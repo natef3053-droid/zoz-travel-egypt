@@ -144,31 +144,31 @@ border-radius: 40% 10% 40% 10% / 50% 20% 50% 20%;
 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
 }
 .trip-1 .image-container{
-background-image: url('/images/ZOZ/Sea\ Trip\ on\ Boat\ .webp');
+background-image: url('Sea\ Trip\ on\ Boat\ .webp');
 }
 .trip-2 .image-container{
-background-image: url('/images/ZOZ/Cairo\ Day\ Trip\ .webp');
+background-image: url('Cairo\ Day\ Trip\ .webp');
 }
 .trip-3 .image-container{
-background-image: url('/images/ZOZ/Premium\ Safari\ Experience\ .webp');
+background-image: url('Premium\ Safari\ Experience\ .webp');
 }
 .trip-4 .image-container{
-background-image: url('/images/ZOZ/Luxor\ Day\ Trip\ .webp');
+background-image: url('Luxor\ Day\ Trip\ .webp');
 }
 .trip-5 .image-container {
-background-image: url('/images/ZOZ/3-Hour\ Safari\ Adventure\ .webp');
+background-image: url('3-Hour\ Safari\ Adventure\ .webp');
 }
 .trip-6 .image-container {
-background-image: url('/images/ZOZ/Hurghada\ City\ Tour\ .webp');
+background-image: url('Hurghada\ City\ Tour\ .webp');
 }
 .trip-7 .image-container {
-background-image: url('/images/ZOZ/Horse\ Riding\ &\ Swimming\ with\ Horses\ .webp');
+background-image: url('Horse\ Riding\ &\ Swimming\ with\ Horses\ .webp');
 }
 .trip-8 .image-container {
-background-image: url('/images/ZOZ/See\ the\ Red\ Sea\ Without\ Getting\ Wet!\ .webp');
+background-image: url('See\ the\ Red\ Sea\ Without\ Getting\ Wet!\ .webp');
 }
 .trip-9 .image-container {
-background-image: url('/images/ZOZ/St.\ Anthony\ &\ St.\ Paul\ Monasteries\ Tour\ .webp');
+background-image: url('St.\ Anthony\ &\ St.\ Paul\ Monasteries\ Tour\ .webp');
 }
 .section.trip-overview {
 padding: 80px 0;
@@ -899,6 +899,7 @@ height: 300px;
 height: 300px;
 }
 }
+
 
 
 
