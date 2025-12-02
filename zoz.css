@@ -1299,3 +1299,17 @@ img {
     font-size: 20px;
   }
 }
+
+/* تطبيق على جميع حاويات المحتوى الرئيسية في صفحة الرحلة */
+.trip-details-section, .main-content {
+    max-width: 100%; /* ضمان عدم تجاوز العرض */
+    overflow-x: hidden; /* إخفاء أي تجاوز أفقي بصرامة */
+    padding: 0; /* تأكدي أن ليس هناك مسافات خارجية (margin) كبيرة تسبب التجاوز */
+}
+
+/* تطبيق على جميع الصور والجداول داخل هذه الصفحات */
+.trip-details-section img,
+.trip-details-section table {
+    max-width: 100% !important;
+    height: auto;
+}
