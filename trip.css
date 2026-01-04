@@ -906,3 +906,57 @@ height: 300px;
 
 
 
+.trip-details-section, .main-content {
+    max-width: 100%; 
+    overflow-x: hidden; 
+    padding: 0; 
+}
+
+.trip-details-section img,
+.trip-details-section table {
+    max-width: 100% !important;
+    height: auto;
+}
+
+@media (max-width: 1024px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .btn, 
+    .trip-card, 
+    .review-card, 
+    .about-list__item, 
+    .header-icon,
+    .main-nav__link {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    .btn:hover, 
+    .trip-card:hover, 
+    .review-card:hover, 
+    .header-icon:hover {
+        transform: none !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+
+
+
+
+
