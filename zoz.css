@@ -1300,16 +1300,55 @@ img {
   }
 }
 
-/* تطبيق على جميع حاويات المحتوى الرئيسية في صفحة الرحلة */
 .trip-details-section, .main-content {
-    max-width: 100%; /* ضمان عدم تجاوز العرض */
-    overflow-x: hidden; /* إخفاء أي تجاوز أفقي بصرامة */
-    padding: 0; /* تأكدي أن ليس هناك مسافات خارجية (margin) كبيرة تسبب التجاوز */
+    max-width: 100%; 
+    overflow-x: hidden; 
+    padding: 0; 
 }
 
-/* تطبيق على جميع الصور والجداول داخل هذه الصفحات */
 .trip-details-section img,
 .trip-details-section table {
     max-width: 100% !important;
     height: auto;
 }
+
+@media (max-width: 1024px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+
+    .btn, 
+    .trip-card, 
+    .review-card, 
+    .about-list__item, 
+    .header-icon,
+    .main-nav__link {
+        will-change: transform, opacity;
+        backface-visibility: hidden;
+        perspective: 1000px;
+    }
+
+    .btn:hover, 
+    .trip-card:hover, 
+    .review-card:hover, 
+    .header-icon:hover {
+        transform: none !important;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        scroll-behavior: smooth;
+    }
+}
+
+
+
+
