@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-image: url('/sections-bg-sm\ .webp');
+    background-image: url('sections-bg-sm\ .webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
