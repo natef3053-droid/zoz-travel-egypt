@@ -17,10 +17,10 @@ const PharaonicDoor = (() => {
     let skip;
     let currentSrc = '';
     const sources = [
-        { size: 1700, src: '/Wide Pharaonic gate.mp4' },
-        { size: 900, src: '/Wide Pharaonic gate.mp4' },
-        { size: 700, src: '/Long pharaonic gate.mp4' },
-        { size: 400, src: '/Long pharaonic gate.mp4' }
+        { size: 1700, src: 'Wide Pharaonic gate.mp4' },
+        { size: 900, src: 'Wide Pharaonic gate.mp4' },
+        { size: 700, src: 'Long pharaonic gate.mp4' },
+        { size: 400, src: 'Long pharaonic gate.mp4' }
     ];
     const getSource = () => {
         const width = window.innerWidth;
