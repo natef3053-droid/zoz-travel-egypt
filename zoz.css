@@ -893,7 +893,7 @@ flex:0 0 calc((100% - 1.875rem) / 2);
 
 }
 
-@media (max-width:48rem){
+@media (max-width:40rem){
 
 .trips-slider-wrapper{
 max-inline-size:90%;
@@ -1725,8 +1725,20 @@ section::after {
   section::after { background: linear-gradient(to top, #eca05c 0%, rgba(172, 117, 74, 0) 100%); inset-block-end: 0; }
 }
 
+@media (min-width: 391px) and (max-width: 651px) {
+   #hero-section { background-image: url('hero-bg-sm\ .webp'); }
+  .about-section,
+  .trips-section,
+  .royal-gallery,
+  .royal-faq,
+  .royal-feedback-section { background-image: url('sections-bg-sm\ .webp'); }
+  .unified-contact-section { background-image: url('contact-bg-sm-.webp'); }
 
-@media (max-width: 650px) {
+  section::before { background: linear-gradient(to bottom, #eca05c 0%, rgba(172, 117, 74, 0) 100%); inset-block-start: 0; }
+  section::after { background: linear-gradient(to top, #eca05c 0%, rgba(172, 117, 74, 0) 100%); inset-block-end: 0; }
+}
+
+@media (max-width: 390px) {
    #hero-section { background-image: url('hero-bg-sm\ .webp'); }
   .about-section,
   .trips-section,
