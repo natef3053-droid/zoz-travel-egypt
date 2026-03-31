@@ -1,272 +1,319 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hurghada City Tour & Marina Evening</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.js">
-    <link rel="stylesheet" href="trip.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#0a0a0a">
+    <title>Hurghada City Essence: Marina & Grand Mosque Tour | ZOZ Travel Egypt</title>
+    <meta name="description" content="Discover the vibrant heart of Hurghada. Explore the stunning Grand Mosque, the luxury Marina, and the authentic local life in a captivating evening tour.">
+    <meta property="og:title" content="Hurghada City Essence: Culture & Landmarks">
+    <meta property="og:description" content="Experience the local soul of Hurghada. From the majestic Mosque to the glowing Marina.">
+    <meta property="og:image" content="Hurghada City Tour .webp">
+    <meta property="og:type" content="website">
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/trip.css">
 </head>
+
 <body class="trip-6">
-    <header>
-        <nav>
-            <div class="nav-left">
-                <ul class="nav-links">
-                    <li><a href="#trip-overview">Overview</a></li>
-                    <li><a href="#trip-itinerary">Itinerary</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#booking">Book Now</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="nav-right">
-                <div class="social-icons">
-                    <a href="https://wa.me/01151532637" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/share/16qjaoL2Zv/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@zoztavelegypt1?_t=ZS-8xWNUdJKrAN&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/zoztravelegypt?igsh=MTAyYXF0cnQ5NjhjZg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </nav>
-        <div class="hero-section">
-            <div class="hero-text">
-                <p class="small-title">Discover the Red Sea Capital</p>
-                <h1>Hurghada City Tour</h1>
-                <p class="description">An unforgettable afternoon and evening tour to explore the culture, landmarks, and vibrant local life of Hurghada, from the Marina to the Grand Mosque.</p>
-                <a href="#booking" class="btn">Book a trip</a>
-            </div>
-            <div class="hero-image">
-                <div class="image-container"></div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">ZOZ TRAVEL EGYPT</div>
+            <nav class="desktop-nav">
+                <a href="#trip-overview" style="--i:1">ESSENCE</a>
+                <a href="#trip-itinerary" style="--i:2">PATH</a>
+                <a href="#trip-essentials" style="--i:3">GIFTS</a>
+                <a href="#gallery" style="--i:4">MOMENTS</a>
+                <a href="#booking" style="--i:5">RESERVE</a>
+            </nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
             </div>
         </div>
     </header>
 
+    <aside class="mobile-overlay" id="mobile-overlay">
+        <nav class="mobile-nav-links">
+            <a href="#trip-overview" class="m-nav-link">ESSENCE</a>
+            <a href="#trip-itinerary" class="m-nav-link">PATH</a>
+            <a href="#trip-essentials" class="m-nav-link">GIFTS</a>
+            <a href="#gallery" class="m-nav-link">MOMENTS</a>
+            <a href="#booking" class="m-nav-link">RESERVE</a>
+        </nav>
+        <div class="social-block">
+            <a href="https://www.facebook.com/share/16qjaoL2Zv/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/zoztravelegypt" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/01151532637" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.tiktok.com/@zoztavelegypt1" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </aside>
+
+    <section class="hero-section">
+        <div class="hero-text">
+            <span class="small-title">The Red Sea Capital</span>
+            <h1>Hurghada Sovereign</h1>
+            <p class="description">Unveil the vibrant soul of the Red Sea’s crown jewel. From the spiritual majesty of the Grand Mosque to the bustling energy of ancient markets, witness a city where modern luxury meets timeless Egyptian heritage.</p>
+            <a href="#booking" class="btn">Explore Now</a>
+        </div>
+        <div class="hero-image">
+            <div class="image-container"></div>
+        </div>
+    </section>
+
     <main>
-        <section class="section trip-overview" id="trip-overview">
-            <h2 class="heading" data-aos="fade-up">Trip Overview</h2>
+        <section class="trip-overview" id="trip-overview">
+            <h2 class="heading">Trip Essence</h2>
             <div class="cards-grid">
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card">
                     <h4 class="card-title">Departure Point</h4>
-                    <p class="card-text">Hotel Pick-up (Hurghada)</p>
+                    <p class="card-text">Hurghada (Royal Hotel Pick-up)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="card-title">Price From</h4>
-                    <p class="card-text">€25 with a 60% discount</p>
+                <div class="card">
+                    <h4 class="card-title">Exclusive Price</h4>
+                    <p class="card-text">Starting from €8 (Limited Legacy Offer)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="300">
-                    <h4 class="card-title">Duration</h4>
-                    <p class="card-text">5 Hours (3:00 PM - 8:00 PM)</p>
+                <div class="card">
+                    <h4 class="card-title">Expedition Time</h4>
+                    <p class="card-text">5 Hours (Sunset Twilight)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="400">
-                    <h4 class="card-title">Highlights</h4>
-                    <p class="card-text">Marina, Grand Mosque, Local Market, Sheraton Street</p>
+                <div class="card">
+                    <h4 class="card-title">Urban Landmarks</h4>
+                    <p class="card-text">Marina, Grand Mosque, Sheraton St, Market</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="500">
-                    <h4 class="card-title">Group Size</h4>
-                    <p class="card-text">Max 10 Participants</p>
+                <div class="card">
+                    <h4 class="card-title">Voyage Size</h4>
+                    <p class="card-text">Boutique Groups (Max 10)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="600">
-                    <h4 class="card-title">Experience Type</h4>
+                <div class="card">
+                    <h4 class="card-title">Trip Style</h4>
                     <p class="card-text">Culture, Sightseeing & Local Life</p>
                 </div>
             </div>
         </section>
 
         <section class="section trip-itinerary" id="trip-itinerary">
-            <h2 class="heading" data-aos="fade-up">Trip Itinerary</h2>
+            <h2 class="heading">The Citizen’s Path</h2>
             <div class="itinerary-timeline">
-                <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Hotel Pick-up & Departure</h4>
-                        <p class="timeline-text">Our representative will pick you up from your hotel in Hurghada to begin your afternoon exploration of the city.</p>
+                        <h4 class="timeline-title">Awakening & Departure</h4>
+                        <p class="timeline-text">Your urban odyssey begins at 3:00 PM. Our representative greets you at your sanctuary to commence an afternoon dedicated to the secrets of the Red Sea Capital.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Hurghada Panorama Stop</h4>
-                        <p class="timeline-text">Enjoy the beautiful panoramic view of Hurghada city and take great souvenir photos.</p>
+                        <h4 class="timeline-title">The Royal Panorama</h4>
+                        <p class="timeline-text">Ascend to the city's highest vantage point. Gaze upon the sprawling beauty of Hurghada, where the desert sands meet the infinite blue, capturing memories that defy time.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Visit the Grand Mosque</h4>
-                        <p class="timeline-text">A visit to one of Hurghada's largest and most impressive religious landmarks for exterior photos and a brief introduction to its architecture.</p>
+                        <h4 class="timeline-title">Spiritual Grandeur</h4>
+                        <p class="timeline-text">Stand before the majestic Grand Mosque. Marvel at the intricate architecture and towering minarets that guard the city’s spiritual heart under the afternoon sun.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Sheraton Street & Local Market Exploration</h4>
-                        <p class="timeline-text">Walk through the old city atmosphere on Sheraton Street, followed by a fascinating look at the Big Fish Market to witness local commerce.</p>
+                        <h4 class="timeline-title">The Market of Wonders</h4>
+                        <p class="timeline-text">Wander through Sheraton Street and the Big Fish Market. Immerse yourself in the authentic pulse of local commerce and the vibrant scents of traditional Egyptian life.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Hurghada Marina Walk</h4>
-                        <p class="timeline-text">A pleasant walk along the famous tourist marina, enjoying the beautiful sea ambiance, yachts, and the international cafe scene.</p>
+                        <h4 class="timeline-title">The Azure Promenade</h4>
+                        <p class="timeline-text">Stroll along the world-class Hurghada Marina. Admire the fleet of yachts and the sophisticated atmosphere of this international nautical sanctuary.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Optional Shopping & Dinner Break</h4>
-                        <p class="timeline-text">Time for optional souvenir shopping or an optional dinner at a local restaurant or Senzo Mall (Dinner is not included in the price).</p>
+                        <h4 class="timeline-title">Optional Twilight Feast</h4>
+                        <p class="timeline-text">As evening falls, enjoy a moment of freedom for optional shopping or a feast at a local haunt or the Senzo Mall before our final journey.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Return to Hotel</h4>
-                        <p class="timeline-text">Concluding the City Tour and dropping you off safely at your hotel.</p>
+                        <h4 class="timeline-title">Return to Sanctuary</h4>
+                        <p class="timeline-text">At 8:00 PM, we escort you back to your hotel, carrying the glowing lights and stories of Hurghada within your heart.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section inclusions-exclusions">
-            <h2 class="heading" data-aos="fade-up">Inclusions & Exclusions</h2>
+        <section class="section inclusions-exclusions" id="trip-essentials">
+            <h2 class="heading">Journey Essentials</h2>
             <div class="inclusions-container">
-                <div class="inclusions-card" data-aos="fade-right">
-                    <h3 class="inclusions-title">What's Included</h3>
+                <div class="inclusions-card">
+                    <h3 class="inclusions-title">The Sacred Gifts (Included)</h3>
                     <ul class="inclusions-list">
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> All Transportation (Hotel pick-up/drop-off)</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Professional City Tour Guide</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Visits to Hurghada Panorama, Marina, and Grand Mosque</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Walk through Sheraton Street and the Fish Market</li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Luxury Hotel Pick-up & Return</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Professional City Oracle (Guide)</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Panorama & Landmark Access</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Guided Walk through Old Town & Marina</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>All Private Transportation</span></li>
                     </ul>
                 </div>
-                <div class="inclusions-card" data-aos="fade-left">
-                    <h3 class="inclusions-title">What's Excluded</h3>
+
+                <div class="inclusions-card">
+                    <h3 class="inclusions-title">Personal Offerings (Excluded)</h3>
                     <ul class="inclusions-list">
-                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> Dinner (The meal is optional and not included)</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> Personal Expenses & Souvenirs</li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> <span>Optional Dinner Banquet</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> <span>Personal Treasures & Souvenirs</span></li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section class="section gallery" id="gallery">
-            <h2 class="heading" data-aos="fade-up">Photo Gallery</h2>
+            <h2 class="heading">Eternal Moments</h2>
             <div class="gallery-wrapper">
-                <div class="gallery-container">
-                    <div class="gallery-slider">
-                        <img src="Hurghada City Tour 1 .webp" alt="Hurghada City Tour 1" class="gallery-slide">
-                        <img src="Hurghada City Tour 2 .webp" alt="Hurghada City Tour 2" class="gallery-slide">
-                        <img src="Hurghada City Tour 3 .webp" alt="Hurghada City Tour 3" class="gallery-slide">
-                        <img src="Hurghada City Tour 4 .webp" alt="Hurghada City Tour 4" class="gallery-slide">
-                        <img src="Hurghada City Tour 5 .webp" alt="Hurghada City Tour 5" class="gallery-slide">
-                        <img src="Hurghada City Tour 6 .webp" alt="Hurghada City Tour 6" class="gallery-slide">
+                <div class="gallery-frame">
+                    <div class="gallery-container">
+                        <div class="gallery-slider">
+                            <img src="Hurghada City Tour 1 .webp" alt="Hurghada City Tour 1" class="gallery-slide">
+                            <img src="Hurghada City Tour 2 .webp" alt="Hurghada City Tour 2" class="gallery-slide">
+                            <img src="Hurghada City Tour 3 .webp" alt="Hurghada City Tour 3" class="gallery-slide">
+                            <img src="Hurghada City Tour 4 .webp" alt="Hurghada City Tour 4" class="gallery-slide">
+                            <img src="Hurghada City Tour 5 .webp" alt="Hurghada City Tour 5" class="gallery-slide">
+                            <img src="Hurghada City Tour 6 .webp" alt="Hurghada City Tour 6" class="gallery-slide">
+                        </div>
                     </div>
                 </div>
                 <div class="gallery-dots"></div>
             </div>
         </section>
+
+        <div id="image-modal" class="image-modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modal-image">
+        </div>
+
         <section id="booking" class="booking-section">
-            <div class="booking-card" data-aos="fade-up">
-                <div class="booking-header">
-                    <h2 class="booking-title">Book Your Hurghada City Tour</h2>
-                    <p class="booking-subtitle">Explore the city's highlights in one convenient afternoon!</p>
-                    <div class="price-details">
-                        <p>Starting From</p>
-                        <span class="price-value">€25 with a 60% discount</span>
+            <h2 class="heading" data-aos="fade-up">Begin Your Discovery</h2>
+            <div class="booking-container">
+                <div class="booking-card">
+                    <div class="booking-header">
+                        <p class="booking-subtitle">Claim your throne on this urban voyage!</p>
+                        <div class="price-details">
+                            <span class="price-value">€8 <small>(Legacy Offer)</small></span>
+                        </div>
                     </div>
+            <form class="booking-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="fullName" required>
                 </div>
-                <form action="#" class="booking-form">
-                    <div class="form-group">
-                        <label for="full-name">Full Name</label>
-                        <input type="text" id="full-name" name="fullName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <input type="number" id="guests" name="guests" min="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Preferred Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pickup-time">Preferred Pickup Time</label>
-                        <input type="time" id="pickup-time" name="pickupTime" value="15:00">
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="hotel-name">Your Hotel Name</label>
-                        <input type="text" id="hotel-name" name="hotelName">
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="special-requests">Special Requests / Notes</label>
-                        <textarea id="special-requests" name="specialRequests" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="cta-button submit-button">Book Now</button>
-                </form>
-            </div>
-        </section>
-
-        <section class="section testimonials" id="testimonials">
-            <h2 class="heading" data-aos="fade-up">Customer Reviews</h2>
-            <div class="testimonials-container">
-                <div class="testimonial-card" data-aos="fade-left">
-                    <p class="testimonial-author">Stephan</p>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-quote">"Great value tour! We especially enjoyed the walk through Sheraton Street for some local shopping and seeing the sheer scale of the Grand Mosque. Everything was well-organized, and the bus was comfortable. Note that dinner is not included, so plan your meal wisely."</p>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required>
                 </div>
-            </div>
-        </section>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <input type="number" name="guests" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Pickup Time</label>
+                    <input type="time" name="pickupTime" value="15:00">
+                </div>
+                <div class="form-group full-width">
+                    <label>Your Hotel Name</label>
+                    <input type="text" name="hotelName">
+                </div>
+                <div class="form-group full-width">
+                    <label>Special Requests</label>
+                    <textarea name="specialRequests" rows="2"></textarea>
+                </div>
+                <div class="submit-container">
+                    <button type="submit" class="btn">Confirm via WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-        <section class="section faq" id="faq">
-            <h2 class="heading" data-aos="fade-up">Frequently Asked Questions</h2>
+        <section class="royal-faq" id="faq">
             <div class="faq-container">
-                <div class="faq-item" data-aos="fade-up">
-                    <h3 class="faq-question">Is the optional dinner included in the price?</h3>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>No, the price covers transportation and guiding to all the city's attractions. The stop for dinner is optional, and guests are responsible for the cost of their meal and drinks.</p>
+                <header class="section-header">
+                    <h2 class="heading" data-aos="fade-up">THE SACRED PAPYRUS</h2>
+                </header>
+
+                <div class="faq-wrapper">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question" onclick="toggleFaq(this)" role="button">
+                            <span class="ankh-icon"></span>
+                            <h3>Is the dinner feast included?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>While we guide you to the city’s finest culinary spots, the banquet remains an optional offering. Guests may choose their own flavors and fulfill their own desires at their own expense.</p>
                         </div>
                     </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up">
-                    <h3 class="faq-question">What is the best currency to use for shopping and souvenirs?</h3>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>While U.S. Dollars ($) and Euros (€) are often accepted, we recommend carrying Egyptian Pounds (EGP) for better rates and easier transactions, especially in the local markets like Sheraton Street.</p>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question" onclick="toggleFaq(this)" role="button">
+                            <span class="ankh-icon"></span>
+                            <h3>What coins should a traveler carry?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Though the realm accepts Euros and Dollars, we advise carrying Egyptian Pounds (EGP) for your tribute at local markets to ensure the most favorable exchange.</p>
                         </div>
                     </div>
-                </div>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question" onclick="toggleFaq(this)" role="button">
+                            <span class="ankh-icon"></span>
+                            <h3>What attire is fit for the city?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Comfortable footwear for the promenade and modest attire for visiting the Grand Mosque is highly recommended for all travelers.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <div id="image-modal" class="image-modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modal-image">
-    </div>
-
-    <button id="scroll-to-top" class="scroll-to-top-button" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-    
-    <footer class="footer">
+    <footer class="integrated-footer">
         <div class="footer-content">
-            <p>&copy; 2025 Desert Adventures. All Rights Reserved.</p>
-            <div class="footer-social-links">
-                <a href="https://www.facebook.com/share/16qjaoL2Zv/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/zoztravelegypt?igsh=MTAyYXF0cnQ5NjhjZg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@zoztavelegypt1?_t=ZS-8xWNUdJKrAN&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/01151532637" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <h2 class="company-name-gold">ZOZ TRAVEL EGYPT</h2>
+            <div class="footer-policy-links">
+                <a href="policies/terms.html">Terms</a>
+                <a href="policies/privacy.html">Privacy</a>
+                <a href="policies/cancellation.html">Cancellation</a>
             </div>
+            <div class="social-orbit">
+                <a class="social-item" href="https://www.facebook.com/share/16qjaoL2Zv/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-item" href="https://www.instagram.com/zoztravelegypt" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="social-item" href="https://wa.me/01151532637" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a class="social-item" href="https://www.tiktok.com/@zoztavelegypt1" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="footer-copyright">© 2024-2026 Travel Egypt. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="trip.js"></script>
-</body>
+    <button id="backToTop" class="royal-back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
 
+    <script src="js/trip.js"></script>
+</body>
 </html>

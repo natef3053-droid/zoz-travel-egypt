@@ -1,252 +1,294 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Desert Safari Adventure</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
-    <link rel="stylesheet" href="trip.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#de8e39">
+    <title>Sahara Golden Safari: 4x4 Jeep & Quad Adventure | ZOZ Travel Egypt</title>
+    <meta name="description" content="Unleash your spirit in the Egyptian desert. Experience 4x4 Jeep racing, Quad biking, and an authentic Bedouin night under the stars with folklore shows.">
+    <meta property="og:title" content="Sahara Golden Safari: Adventure Awaits">
+    <meta property="og:description" content="From Quad biking to Bedouin tea – experience the magic of the desert like never before.">
+    <meta property="og:image" content="Premium Safari Experience .webp">
+    <meta property="og:type" content="website">
+    <link rel="shortcut icon" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Playfair+Display:ital,wght@0,400;1,700&family=Lora:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="css/trip.css">
 </head>
+
 <body class="trip-3">
-    <header>
-        <nav>
-            <div class="nav-left">
-                <ul class="nav-links">
-                    <li><a href="#trip-overview">Overview</a></li>
-                    <li><a href="#trip-itinerary">Itinerary</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#booking">Book Now</a></li>
-                    <li><a href="#testimonials">Reviews</a></li>
-                    <li><a href="#faq">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="nav-right">
-                <div class="social-icons">
-                    <a href="https://wa.me/01151532637" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-                    <a href="https://www.facebook.com/share/16qjaoL2Zv/" target="_blank" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.tiktok.com/@zoztavelegypt1?_t=ZS-8xWNUdJKrAN&_r=1" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                    <a href="https://www.instagram.com/zoztravelegypt?igsh=MTAyYXF0cnQ5NjhjZg==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </nav>
-        <div class="hero-section">
-            <div class="hero-text">
-                <p class="small-title">Desert Adventure</p>
-                <h1> Safari Trip</h1>
-                <p class="description">Enjoy a thrilling quad bike ride, a 4x4 Jeep tour across the desert, visit a Bedouin village, and cap the night with dinner and a traditional folklore show.</p>
-                <a href="#booking" class="btn">Book a trip</a>
-            </div>
-            <div class="hero-image">
-                <div class="image-container"></div>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">ZOZ TRAVEL EGYPT</div>
+            <nav class="desktop-nav">
+                <a href="#trip-overview" style="--i:1">ESSENCE</a>
+                <a href="#trip-itinerary" style="--i:2">PATH</a>
+                <a href="#trip-essentials" style="--i:3">GIFTS</a>
+                <a href="#gallery" style="--i:4">MOMENTS</a>
+                <a href="#booking" style="--i:5">RESERVE</a>
+            </nav>
+            <div class="menu-toggle" id="menu-toggle">
+                <span class="line line-1"></span>
+                <span class="line line-2"></span>
+                <span class="line line-3"></span>
             </div>
         </div>
     </header>
 
+    <aside class="mobile-overlay" id="mobile-overlay">
+        <nav class="mobile-nav-links">
+            <a href="#trip-overview" class="m-nav-link">ESSENCE</a>
+            <a href="#trip-itinerary" class="m-nav-link">PATH</a>
+            <a href="#trip-essentials" class="m-nav-link">GIFTS</a>
+            <a href="#gallery" class="m-nav-link">MOMENTS</a>
+            <a href="#booking" class="m-nav-link">RESERVE</a>
+        </nav>
+        <div class="social-block">
+            <a href="https://www.facebook.com/share/16qjaoL2Zv/" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/zoztravelegypt" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/01151532637" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.tiktok.com/@zoztavelegypt1" class="social-icon"><i class="fab fa-tiktok"></i></a>
+        </div>
+    </aside>
+
+    <section class="hero-section">
+        <div class="hero-text">
+            <span class="small-title">Desert Adventure</span>
+            <h1>Sands of Eternity</h1>
+            <p class="description">Conquer the golden vastness of the Egyptian desert. From the roar of quad bikes to the ancient silence of Bedouin nights, embark on a thrilling expedition where the horizon meets the heritage of the sun.</p>
+            <a href="#booking" class="btn">Explore Now</a>
+        </div>
+        <div class="hero-image">
+            <div class="image-container"></div>
+        </div>
+    </section>
+
     <main>
-        <section class="section trip-overview" id="trip-overview">
-            <h2 class="heading" data-aos="fade-up">Trip Overview</h2>
+        <section class="trip-overview" id="trip-overview">
+            <h2 class="heading">Trip Essence</h2>
             <div class="cards-grid">
-                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <div class="card">
                     <h4 class="card-title">Departure Point</h4>
-                    <p class="card-text">Hotel Pick-up (Hurghada)</p>
+                    <p class="card-text">Hurghada (Direct Hotel Pick-up)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="200">
-                    <h4 class="card-title">Price From</h4>
-                    <p class="card-text">€25 with a 16% discount</p>
+                <div class="card">
+                    <h4 class="card-title">Exclusive Price</h4>
+                    <p class="card-text">Starting from €28 (Legacy Offer)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="300">
-                    <h4 class="card-title">Duration</h4>
-                    <p class="card-text">7 Hours (Approx)</p>
+                <div class="card">
+                    <h4 class="card-title">Expedition Time</h4>
+                    <p class="card-text">Approximately 7 Hours</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="400">
-                    <h4 class="card-title">Highlights</h4>
-                    <p class="card-text">Quad Biking, 4x4 Jeep Ride, Bedouin Village Visit, Sunset View, Dinner & Show</p>
+                <div class="card">
+                    <h4 class="card-title">Safari Highlights</h4>
+                    <p class="card-text">Quad Biking, 4x4 Jeep, Bedouin Village</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="500">
-                    <h4 class="card-title">Group Size</h4>
-                    <p class="card-text">Max 14 Participants</p>
+                <div class="card">
+                    <h4 class="card-title">Voyage Size</h4>
+                    <p class="card-text">Small Adventure Groups (Max 14)</p>
                 </div>
-                <div class="card" data-aos="fade-up" data-aos-delay="600">
-                    <h4 class="card-title">Experience Type</h4>
-                    <p class="card-text">Adventure & Cultural</p>
+                <div class="card">
+                    <h4 class="card-title">Trip Style</h4>
+                    <p class="card-text">Adventure & Cultural Heritage</p>
                 </div>
             </div>
         </section>
 
         <section class="section trip-itinerary" id="trip-itinerary">
-            <h2 class="heading" data-aos="fade-up">Trip Itinerary</h2>
+            <h2 class="heading">The Nomad’s Path</h2>
             <div class="itinerary-timeline">
-                <div class="timeline-item" data-aos="fade-right">
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Hotel Pick-up & Transfer</h4>
-                        <p class="timeline-text">Pick-up from your hotel and a comfortable 20-minute transfer to the Safari center.</p>
+                        <h4 class="timeline-title">Departure from the Shores</h4>
+                        <p class="timeline-text">Your odyssey begins with a comfortable transfer from your hotel, venturing deep into the heart of the eastern desert toward our sacred Safari sanctuary.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">2-Hour Quad Bike Adventure</h4>
-                        <p class="timeline-text">Receive safety instructions and embark on an exciting two-hour ride on the quad bike (Beach Buggy) across the desert sands.</p>
+                        <h4 class="timeline-title">The Iron Chariots: Quad Adventure</h4>
+                        <p class="timeline-text">Master the sands as you pilot your own quad bike. For two hours, race across the dunes, feeling the pulse of the desert beneath your hands.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">4x4 Jeep Ride to Bedouin Village</h4>
-                        <p class="timeline-text">Switch to a 4x4 Jeep for a thrilling drive to the authentic Bedouin village, where you will enjoy traditional tea and a camel ride.</p>
+                        <h4 class="timeline-title">Great Sands 4x4 Voyage</h4>
+                        <p class="timeline-text">Board the mighty 4x4 Jeeps for a thrilling crossing of the golden terrain, heading toward a hidden world untouched by time.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Desert Sunset Observation</h4>
-                        <p class="timeline-text">Start the return journey to witness the magical sunset views over the vast desert landscape.</p>
+                        <h4 class="timeline-title">Legacy of the Bedouins</h4>
+                        <p class="timeline-text">Enter an authentic Bedouin village. Savor traditional tea, find peace on a sacred camel ride, and witness the secrets of desert life.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-right">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Dinner, Show, and Folklore Evening</h4>
-                        <p class="timeline-text">Enjoy a delicious dinner and a captivating evening show featuring traditional folk performances and a belly dancer under the moonlight.</p>
+                        <h4 class="timeline-title">The Sun God’s Farewell</h4>
+                        <p class="timeline-text">Witness a magical sunset that paints the sky in royal gold and crimson, a spectacle that has enchanted travelers since the dawn of Egypt.</p>
                     </div>
                 </div>
-                <div class="timeline-item" data-aos="fade-left">
+
+                <div class="timeline-item">
                     <div class="timeline-content">
-                        <h4 class="timeline-title">Return to Hotel</h4>
-                        <p class="timeline-text">Transfer back to your hotel in Hurghada.</p>
+                        <h4 class="timeline-title">Royal Feast & Folklore Celebration</h4>
+                        <p class="timeline-text">Under the gaze of the moon, enjoy a grand dinner accompanied by a mesmerizing folklore show and the traditional dance of the desert.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h4 class="timeline-title">Return to the Oasis</h4>
+                        <p class="timeline-text">As the stars take their throne, we guide you safely back to your hotel, carrying the eternal spirit of the desert within you.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="section inclusions-exclusions">
-            <h2 class="heading" data-aos="fade-up">Inclusions & Exclusions</h2>
+        <section class="section inclusions-exclusions" id="trip-essentials">
+            <h2 class="heading">Journey Essentials</h2>
             <div class="inclusions-container">
-                <div class="inclusions-card" data-aos="fade-right">
-                    <h3 class="inclusions-title">What's Included</h3>
+                <div class="inclusions-card">
+                    <h3 class="inclusions-title">The Sacred Gifts (Included)</h3>
                     <ul class="inclusions-list">
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Round-trip Transfer </li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Quad Bike (Beach Buggy) Ride</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> 4x4 Jeep Safari Tour</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Visit to a Bedouin Village & traditional tea</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Camel Ride Experience</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> Evening Dinner and Show (Folklore & Belly Dancer)</li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Hotel Pick-up & Return Chariots</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Two-Hour Quad Biking Expedition</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Thrilling 4x4 Jeep Safari</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Bedouin Hospitality & Camel Voyage</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Traditional Evening Dinner</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Live Folklore & Cultural Performance</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-check"></i> <span>Refreshing Desert Water & Tea</span></li>
                     </ul>
                 </div>
-                <div class="inclusions-card" data-aos="fade-left">
-                    <h3 class="inclusions-title">What's Excluded</h3>
+
+                <div class="inclusions-card">
+                    <h3 class="inclusions-title">Personal Offerings (Excluded)</h3>
                     <ul class="inclusions-list">
-                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> Personal Expenses & Souvenirs</li>
-                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> Optional Activities and purchases</li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> <span>Personal Treasures & Souvenirs</span></li>
+                        <li class="inclusions-list-item"><i class="fas fa-circle-xmark"></i> <span>Optional Purchases at the Village</span></li>
                     </ul>
                 </div>
             </div>
         </section>
 
         <section class="section gallery" id="gallery">
-            <h2 class="heading" data-aos="fade-up">Photo Gallery</h2>
+            <h2 class="heading">Eternal Moments</h2>
             <div class="gallery-wrapper">
-                <div class="gallery-container">
-                    <div class="gallery-slider">
-                        <img src="Safari trip photo 1 .webp" alt="Trip photo 1" class="gallery-slide">
-                        <img src="Safari trip photo 2 .webp" alt="Trip photo 2" class="gallery-slide">
-                        <img src="Safari trip photo 3 .webp" alt="Trip photo 3" class="gallery-slide">
-                        <img src="Safari trip photo 4 .webp" alt="Trip photo 4" class="gallery-slide">
-                        <img src="Safari trip photo 5 .webp" alt="Trip photo 5" class="gallery-slide">
-                        <img src="Safari trip photo 6 .webp" alt="Trip photo 6" class="gallery-slide">
-                        <img src="Safari trip photo 7 .webp" alt="Trip photo 6" class="gallery-slide">
+                <div class="gallery-frame">
+                    <div class="gallery-container">
+                        <div class="gallery-slider">
+                            <img src="Safari trip photo 1 .webp" alt="Safari trip photo 1" class="gallery-slide">
+                            <img src="Safari trip photo 2 .webp" alt="Safari trip photo 2" class="gallery-slide">
+                            <img src="Safari trip photo 3 .webp" alt="Safari trip photo 3" class="gallery-slide">
+                            <img src="Safari trip photo 4 .webp" alt="Safari trip photo 4" class="gallery-slide">
+                            <img src="Safari trip photo 5 .webp" alt="Safari trip photo 5" class="gallery-slide">
+                            <img src="Safari trip photo 6 .webp" alt="Safari trip photo 6" class="gallery-slide">
+                            <img src="Safari trip photo 7 .webp" alt="Safari trip photo 7" class="gallery-slide">
+                        </div>
                     </div>
                 </div>
                 <div class="gallery-dots"></div>
             </div>
         </section>
 
+        <div id="image-modal" class="image-modal">
+            <span class="close-modal">&times;</span>
+            <img class="modal-content" id="modal-image">
+        </div>
+
         <section id="booking" class="booking-section">
-            <div class="booking-card" data-aos="fade-up">
-                <div class="booking-header">
-                    <h2 class="booking-title">Book Your Adventure</h2>
-                    <p class="booking-subtitle">Secure your spot on this unforgettable journey!</p>
-                    <div class="price-details">
-                        <p>Starting From</p>
-                        <span class="price-value">€25 with a 16% discount</span>
+            <h2 class="heading" data-aos="fade-up">Begin Your Expedition</h2>
+            <div class="booking-container">
+                <div class="booking-card">
+                    <div class="booking-header">
+                        <p class="booking-subtitle">Secure your place in the golden sands!</p>
+                        <div class="price-details">
+                            <span class="price-value">€28 <small>(Legacy Offer)</small></span>
+                        </div>
                     </div>
+            <form class="booking-form">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" name="fullName" required>
                 </div>
-                <form action="#" class="booking-form">
-                    <div class="form-group">
-                        <label for="full-name">Full Name</label>
-                        <input type="text" id="full-name" name="fullName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <input type="number" id="guests" name="guests" min="1" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Preferred Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="pickup-time">Preferred Pickup Time</label>
-                        <input type="time" id="pickup-time" name="pickupTime">
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="hotel-name">Your Hotel Name</label>
-                        <input type="text" id="hotel-name" name="hotelName">
-                    </div>
-                    <div class="form-group full-width">
-                        <label for="special-requests">Special Requests / Notes</label>
-                        <textarea id="special-requests" name="specialRequests" rows="4"></textarea>
-                    </div>
-                    <button type="submit" class="cta-button submit-button">Book Now</button>
-                </form>
-            </div>
-        </section>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" name="phone" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <input type="number" name="guests" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label>Preferred Date</label>
+                    <input type="date" name="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Pickup Time</label>
+                    <input type="time" name="pickupTime">
+                </div>
+                <div class="form-group full-width">
+                    <label>Your Hotel Name</label>
+                    <input type="text" name="hotelName">
+                </div>
+                <div class="form-group full-width">
+                    <label>Special Requests</label>
+                    <textarea name="specialRequests" rows="2"></textarea>
+                </div>
+                <div class="submit-container">
+                    <button type="submit" class="btn">Confirm via WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-        <section class="section testimonials" id="testimonials">
-            <h2 class="heading" data-aos="fade-up">Customer Reviews</h2>
-            <div class="testimonials-container">
-                <div class="testimonial-card" data-aos="fade-right">
-                    <p class="testimonial-author">Ahmed</p>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-quote">"The quad biking was an absolute blast—two hours was the perfect amount of time! The Bedouin village visit felt authentic, and the camel ride was a nice touch. Watching the sunset before the dinner show made the whole evening memorable. Everything was excellent value for the price!"</p>
-                </div>
-                <div class="testimonial-card" data-aos="fade-left">
-                    <p class="testimonial-author">Olivia</p>
-                    <div class="testimonial-stars">★★★★★</div>
-                    <p class="testimonial-quote">"This safari delivered! The 4x4 Jeep ride was exciting, and the dinner show was a wonderful way to end the day. A simple tip: wear old clothes and bring a scarf, as the desert dust gets everywhere, but it's totally worth it for the adventure!"</p>
-                </div>
-            </div>
-        </section>
 
-        <section class="section faq" id="faq">
-            <h2 class="heading" data-aos="fade-up">Frequently Asked Questions</h2>
+        <section class="royal-faq" id="faq">
             <div class="faq-container">
-                <div class="faq-item" data-aos="fade-up">
-                    <h3 class="faq-question">What is the recommended attire for the safari trip?</h3>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>We highly recommend wearing comfortable, old clothes that you don't mind getting dusty. It is also wise to bring closed-toe shoes, sunglasses, and a scarf or mask to protect your face from the sand and sun.</p>
+                <header class="section-header">
+                    <h2 class="heading" data-aos="fade-up">THE SACRED PAPYRUS</h2>
+                </header>
+
+                <div class="faq-wrapper">
+                    <div class="faq-item" data-aos="fade-up">
+                        <div class="faq-question" onclick="toggleFaq(this)" role="button">
+                            <span class="ankh-icon"></span>
+                            <h3>What attire is fit for the sands?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>We advise wearing comfortable, humble attire that may embrace the desert dust. Secure shoes, sun-shields (glasses), and a sacred scarf (mask) are essential to protect you from the sun and the winds.</p>
                         </div>
                     </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up">
-                    <h3 class="faq-question">When is the dinner provided during the excursion?</h3>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>Dinner is provided in the early evening as part of the celebration and folklore show, after the sun has set. It is a traditional meal served at the Bedouin camp.</p>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="100">
+                        <div class="faq-question" onclick="toggleFaq(this)" role="button">
+                            <span class="ankh-icon"></span>
+                            <h3>When is the feast served?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>The feast begins after the sun has completed its journey. As twilight falls over the Bedouin camp, the folklore celebration and dinner will commence under the desert stars.</p>
                         </div>
                     </div>
-                </div>
-                <div class="faq-item" data-aos="fade-up">
-                    <h3 class="faq-question">Do I need prior experience to drive the Quad Bike?</h3>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            <p>No, you do not need previous experience. Full instructions and safety training will be provided before you start the ride. The activity is generally safe and enjoyable for beginners.</p>
+
+                    <div class="faq-item" data-aos="fade-up" data-aos-delay="200">
+                        <div class="faq-question" onclick="toggleFaq(this)" role="button">
+                            <span class="ankh-icon"></span>
+                            <h3>Is mastery required for the Quad Bike?</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <p>No prior mastery is needed. Our guardians will provide full training and safety scrolls before you begin, ensuring your voyage is both safe and legendary.</p>
                         </div>
                     </div>
                 </div>
@@ -254,30 +296,28 @@
         </section>
     </main>
 
-    <div id="image-modal" class="image-modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modal-image">
-    </div>
-
-    <button id="scroll-to-top" class="scroll-to-top-button" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
-    </button>
-    
-    <footer class="footer">
+    <footer class="integrated-footer">
         <div class="footer-content">
-            <p>&copy; 2025 Desert Adventures. All Rights Reserved.</p>
-            <div class="footer-social-links">
-                <a href="https://www.facebook.com/share/16qjaoL2Zv/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.instagram.com/zoztravelegypt?igsh=MTAyYXF0cnQ5NjhjZg==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.tiktok.com/@zoztavelegypt1?_t=ZS-8xWNUdJKrAN&_r=1" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                <a href="https://wa.me/01151532637" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <h2 class="company-name-gold">ZOZ TRAVEL EGYPT</h2>
+            <div class="footer-policy-links">
+                <a href="policies/terms.html">Terms</a>
+                <a href="policies/privacy.html">Privacy</a>
+                <a href="policies/cancellation.html">Cancellation</a>
             </div>
+            <div class="social-orbit">
+                <a class="social-item" href="https://www.facebook.com/share/16qjaoL2Zv/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a class="social-item" href="https://www.instagram.com/zoztravelegypt" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a class="social-item" href="https://wa.me/01151532637" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a class="social-item" href="https://www.tiktok.com/@zoztavelegypt1" target="_blank"><i class="fab fa-tiktok"></i></a>
+            </div>
+            <p class="footer-copyright">© 2024-2026 Travel Egypt. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="trip.js"></script>
+    <button id="backToTop" class="royal-back-to-top" aria-label="Back to top">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="js/trip.js"></script>
 </body>
 </html>
-
-

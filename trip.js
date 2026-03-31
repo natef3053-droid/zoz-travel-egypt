@@ -1,207 +1,249 @@
 
-document.addEventListener('DOMContentLoaded', () => {
-  const initAOS = () => {
-    AOS.init({
-      duration: 800,
-      once: true
-    });
-  };
+document.addEventListener("DOMContentLoaded", () => {
+    const debounce = (func, delay = 100) => {
+        let timer;
+        return (...args) => {
+            clearTimeout(timer);
+            timer = setTimeout(() => func.apply(this, args), delay);
+        };
+    };
 
-  const handleFaqAccordion = () => {
-    const faqItems = document.querySelectorAll('.faq-question');
-    faqItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const answer = item.nextElementSibling;
-        const activeQuestion = document.querySelector('.faq-question.active');
-
-        if (activeQuestion && activeQuestion !== item) {
-          activeQuestion.classList.remove('active');
-          activeQuestion.nextElementSibling.style.maxHeight = '0';
-        }
-
-        item.classList.toggle('active');
-        if (item.classList.contains('active')) {
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        } else {
-          answer.style.maxHeight = '0';
-        }
-      });
-    });
-  };
-
-  const initGallerySlider = () => {
-    const gallerySlider = document.querySelector('.gallery-slider');
-    const galleryDotsContainer = document.querySelector('.gallery-dots');
-    const gallerySlides = document.querySelectorAll('.gallery-slide');
-
-    if (!gallerySlider || !galleryDotsContainer || gallerySlides.length === 0) return;
-
-    let slideIndex = 0;
-    let autoPlayInterval;
-
-    const createDots = () => {
-      gallerySlides.forEach((_, index) => {
-        const dot = document.createElement('span');
-        dot.classList.add('gallery-dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => {
-          goToSlide(index);
+    /* Header & Mobile Menu */
+    const menuToggle = document.getElementById("menu-toggle");
+    const mobileOverlay = document.getElementById("mobile-overlay");
+    const closeMenu = () => {
+        menuToggle.classList.remove("active");
+        mobileOverlay.classList.remove("active");
+        document.body.style.overflow = "";
+    };
+    const openMenu = () => {
+        menuToggle.classList.add("active");
+        mobileOverlay.classList.add("active");
+        document.body.style.overflow = "hidden";
+    };
+    if (menuToggle && mobileOverlay) {
+        menuToggle.addEventListener("click", (e) => {
+            e.stopPropagation();
+            mobileOverlay.classList.contains("active") ? closeMenu() : openMenu();
         });
-        galleryDotsContainer.appendChild(dot);
-      });
-    };
-
-    const updateDots = () => {
-      const dots = document.querySelectorAll('.gallery-dot');
-      dots.forEach(dot => dot.classList.remove('active'));
-      if (dots[slideIndex]) {
-        dots[slideIndex].classList.add('active');
-      }
-    };
-
-    const goToSlide = (index) => {
-      slideIndex = index;
-      gallerySlider.style.transform = `translateX(${-slideIndex * 100}%)`;
-      updateDots();
-    };
-
-    const startAutoPlay = () => {
-      stopAutoPlay();
-      autoPlayInterval = setInterval(() => {
-        slideIndex = (slideIndex + 1) % gallerySlides.length;
-        goToSlide(slideIndex);
-      }, 3000);
-    };
-
-    const stopAutoPlay = () => {
-      clearInterval(autoPlayInterval);
-    };
-
-    const handleModal = () => {
-      const modal = document.getElementById('image-modal');
-      const modalImage = document.getElementById('modal-image');
-      const closeModal = document.querySelector('.close-modal');
-
-      gallerySlides.forEach(slide => {
-        slide.addEventListener('click', () => {
-          if (modal && modalImage) {
-            modal.style.display = 'flex';
-            modalImage.src = slide.src;
-          }
+        mobileOverlay.addEventListener("click", (e) => {
+            if (e.target.tagName === "A") closeMenu();
         });
-      });
-
-      if (closeModal) {
-        closeModal.addEventListener('click', () => {
-          modal.style.display = 'none';
+        document.addEventListener("click", (e) => {
+            if (!mobileOverlay.contains(e.target) && !menuToggle.contains(e.target)) {
+                closeMenu();
+            }
         });
-      }
+    }
 
-      window.addEventListener('click', (event) => {
-        if (event.target === modal) {
-          modal.style.display = 'none';
-        }
-      });
-    };
-
-    createDots();
-    startAutoPlay();
-    handleModal();
-
-    gallerySlider.addEventListener('mouseenter', stopAutoPlay);
-    gallerySlider.addEventListener('mouseleave', startAutoPlay);
-  };
-
-  const handleScrollToTop = () => {
-    const scrollToTopButton = document.getElementById('scroll-to-top');
-    if (!scrollToTopButton) return;
-
-    window.addEventListener('scroll', () => {
-      scrollToTopButton.classList.toggle('show', window.scrollY > 300);
-    });
-
-    scrollToTopButton.addEventListener('click', () => {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    });
-  };
-
-  const handleBookingForm = () => {
-    const bookingForm = document.querySelector('.booking-form');
-    if (!bookingForm) return;
-
-    bookingForm.addEventListener('submit', (event) => {
-      event.preventDefault();
-
-      const formInputs = bookingForm.querySelectorAll('input[required]');
-      let isValid = true;
-      formInputs.forEach(input => {
-        if (input.value.trim() === '') {
-          input.setCustomValidity("Please fill out this field.");
-          isValid = false;
-        } else {
-          input.setCustomValidity("");
-        }
-      });
-
-      if (isValid) {
-        const formData = new FormData(bookingForm);
-        const data = Object.fromEntries(formData.entries());
-
-        const pageTitle = document.title;
-        const tripName = pageTitle.replace(/ - رحلة/i, '').trim();
-
-        const whatsappMessage =
-          `New Tour Booking! ✈️\n\n` +
-          `Trip Name: ${tripName}\n\n` +
-          `---\n\n` +
-          `Full Name: ${data.fullName}\n` +
-          `Email: ${data.email}\n` +
-          `Phone Number: ${data.phone}\n` +
-          `Number of Guests: ${data.guests}\n` +
-          `Preferred Date: ${data.date}\n` +
-          `Preferred Pickup Time: ${data.pickupTime || 'Not specified'}\n` +
-          `Hotel Name: ${data.hotelName || 'Not specified'}\n\n` +
-          `---\n\n` +
-          `Special Requests / Notes:\n` +
-          `${data.specialRequests || 'N/A'}`;
-
-        const phoneNumber = '201151532637';
-        const whatsappLink = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappLink, '_blank');
-      } else {
-        bookingForm.reportValidity();
-      }
-    });
-  };
-
-  const initLazyLoading = () => {
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          if (img.dataset.src) {
-            img.src = img.dataset.src;
-            img.removeAttribute('data-src');
-          }
-          obs.unobserve(img);
-        }
-      });
+    /* Reveal Animations */
+    const revealElements = document.querySelectorAll(
+        ".card, .timeline-item, .inclusions-card"
+    );
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            el.style.opacity = "1";
+            el.style.transform = "translateY(0)";
+            if (el.classList.contains("inclusions-card")) {
+                const items = el.querySelectorAll(".inclusions-list-item");
+                items.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.style.opacity = "1";
+                        item.style.transform = "translateX(0)";
+                    }, index * 70);
+                });
+            }
+            revealObserver.unobserve(el);
+        });
     }, {
-      rootMargin: '0px 0px 100px 0px'
+        threshold: 0.15,
+        rootMargin: "0px 0px -50px 0px"
+    });
+    revealElements.forEach(el => {
+        el.style.opacity = "0";
+        el.style.transform = "translateY(40px)";
+        revealObserver.observe(el);
     });
 
-    document.querySelectorAll('img[data-src]').forEach(img => {
-      observer.observe(img);
-    });
-  };
+    /* Cards Hover Interaction */
+    const cards = document.querySelectorAll(".card");
+    if (window.innerWidth > 1024) {
+        cards.forEach(card => {
+            card.addEventListener("mousemove", (e) => {
+                const { left, top, width, height } = card.getBoundingClientRect();
+                const x = (e.clientX - left) / width - 0.5;
+                const y = (e.clientY - top) / height - 0.5;
+                card.style.transform =
+                    `perspective(1000px) rotateY(${x * 10}deg) rotateX(${y * -10}deg) translateY(-8px)`;
+                card.style.boxShadow = "0 20px 40px rgba(0,0,0,0.15)";
+            });
+            card.addEventListener("mouseleave", () => {
+                card.style.transform =
+                    "perspective(1000px) rotateY(0deg) rotateX(0deg) translateY(0)";
+                card.style.boxShadow = "none";
+            });
+        });
+    }
 
-  initAOS();
-  handleFaqAccordion();
-  initGallerySlider();
-  handleScrollToTop();
-  handleBookingForm();
-  initLazyLoading();
+    /* Timeline Touch Interaction */
+    const timelineItems = document.querySelectorAll(".timeline-item");
+    timelineItems.forEach(item => {
+        item.addEventListener("touchstart", () => {
+            item.classList.add("active-touch");
+        }, { passive: true });
+        item.addEventListener("touchend", () => {
+            setTimeout(() => item.classList.remove("active-touch"), 300);
+        }, { passive: true });
+    });
+
+    /* Inclusions Cards Touch */
+    const inclusionCards = document.querySelectorAll(".inclusions-card");
+    inclusionCards.forEach(card => {
+        const items = card.querySelectorAll(".inclusions-list-item");
+        items.forEach(li => {
+            li.style.opacity = "0";
+            li.style.transform = "translateX(-15px)";
+            li.style.transition = "all 0.6s cubic-bezier(0.23,1,0.32,1)";
+        });
+        card.addEventListener("touchstart", () => {
+            card.style.transform = "scale(0.98) translateY(-5px)";
+        }, { passive: true });
+        card.addEventListener("touchend", () => {
+            card.style.transform = "translateY(0) scale(1)";
+        }, { passive: true });
+    });
+
+    /* Buttons Interaction */
+    const buttons = document.querySelectorAll(".btn");
+    buttons.forEach(btn => {
+        btn.addEventListener("mouseenter", () => {
+            btn.style.transition = "all 0.4s cubic-bezier(0.175,0.885,0.32,1.275)";
+        });
+    });
+
+    /* Gallery Slider & Modal */
+    const gallerySlider = document.querySelector(".gallery-slider");
+    const galleryDotsContainer = document.querySelector(".gallery-dots");
+    const gallerySlides = document.querySelectorAll(".gallery-slide");
+    const modal = document.getElementById("image-modal");
+    const modalImage = document.getElementById("modal-image");
+    const closeModal = document.querySelector(".close-modal");
+    if (gallerySlider && gallerySlides.length) {
+        let slideIndex = 0;
+        let autoPlayInterval;
+        const createDots = () => {
+            gallerySlides.forEach((_, index) => {
+                const dot = document.createElement("span");
+                dot.classList.add("gallery-dot");
+                if (index === 0) dot.classList.add("active");
+                dot.addEventListener("click", () => goToSlide(index));
+                galleryDotsContainer.appendChild(dot);
+            });
+        };
+        const updateDots = () => {
+            const dots = document.querySelectorAll(".gallery-dot");
+            dots.forEach(dot => dot.classList.remove("active"));
+            if (dots[slideIndex]) dots[slideIndex].classList.add("active");
+        };
+        const goToSlide = (index) => {
+            slideIndex = index;
+            gallerySlider.style.transform =
+                `translateX(${-slideIndex * 100}%)`;
+            updateDots();
+        };
+        const startAutoPlay = () => {
+            stopAutoPlay();
+            autoPlayInterval = setInterval(() => {
+                slideIndex = (slideIndex + 1) % gallerySlides.length;
+                goToSlide(slideIndex);
+            }, 3000);
+        };
+        const stopAutoPlay = () => clearInterval(autoPlayInterval);
+        gallerySlides.forEach(slide => {
+            slide.addEventListener("click", () => {
+                modal.style.display = "flex";
+                modalImage.src = slide.src;
+                stopAutoPlay();
+            });
+        });
+        closeModal.addEventListener("click", () => {
+            modal.style.display = "none";
+            startAutoPlay();
+        });
+        window.addEventListener("click", (e) => {
+            if (e.target === modal) {
+                modal.style.display = "none";
+                startAutoPlay();
+            }
+        });
+        createDots();
+        startAutoPlay();
+        gallerySlider.addEventListener("mouseenter", stopAutoPlay);
+        gallerySlider.addEventListener("mouseleave", startAutoPlay);
+    }
+
+    /* Booking Form */
+    const form = document.querySelector(".booking-form");
+    if (form) {
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const btn = form.querySelector(".btn");
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            const tripName = document.title.split("|")[0].trim();
+            const message =
+                `*New Kingdom Discovery Booking* 🏺\n` +
+                `---------------------------\n` +
+                `🏰 *Adventure:* ${tripName}\n` +
+                `👤 *Guest:* ${data.fullName}\n` +
+                `📞 *Contact:* ${data.phone}\n` +
+                `👥 *Size:* ${data.guests} Persons\n` +
+                `📅 *Date:* ${data.date}\n` +
+                `---------------------------\n` +
+                `✉️ Sent from your professional portal.`;
+            const whatsappLink =
+                `https://wa.me/201151532637?text=${encodeURIComponent(message)}`;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = "Processing... 🕊️";
+            setTimeout(() => {
+                window.open(whatsappLink, "_blank");
+                btn.innerHTML = "Request Sent!";
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                }, 3000);
+            }, 800);
+        });
+    }
+
+    /* Back To Top */
+    const backToTopBtn = document.getElementById("backToTop");
+    if (backToTopBtn) {
+        const handleScroll = debounce(() => {
+            if (window.pageYOffset > 400) {
+                backToTopBtn.classList.add("show");
+            } else {
+                backToTopBtn.classList.remove("show");
+            }
+        }, 50);
+        window.addEventListener("scroll", handleScroll);
+        backToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+    }
 });
+
+function toggleFaq(element) {
+    const parent = element.parentElement;
+    const allItems = document.querySelectorAll(".faq-item");
+    allItems.forEach(item => {
+        if (item !== parent && item.classList.contains("active")) {
+            item.classList.remove("active");
+        }
+    });
+    parent.classList.toggle("active");
+}
