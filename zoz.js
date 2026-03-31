@@ -1,298 +1,481 @@
 
-/*---------------------- Pharaonic door -------------------------*/
-document.addEventListener('DOMContentLoaded', () => {
-    const videoOverlay = document.getElementById('video-overlay');
-    const introVideo = document.getElementById('intro-video');
-    const skipButton = document.getElementById('skip-button');
-
-    const videoSources = [
-        { size: 1700, src: 'Wide Pharaonic gate.mp4' },
-        { size: 900, src: 'Wide Pharaonic gate.mp4' },
-        { size: 700, src: 'Long pharaonic gate.mp4' },
-        { size: 400, src: 'Long pharaonic gate.mp4' }
+const RAFThrottle = (fn) => {
+    let ticking = false;
+    return (...args) => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                fn(...args);
+                ticking = false;
+            });
+            ticking = true;
+        }
+    };
+};
+const PharaonicDoor = (() => {
+    let overlay;
+    let video;
+    let skip;
+    let currentSrc = '';
+    const sources = [
+        { size: 1700, src: '/Wide Pharaonic gate.mp4' },
+        { size: 900, src: '/Wide Pharaonic gate.mp4' },
+        { size: 700, src: '/Long pharaonic gate.mp4' },
+        { size: 400, src: '/Long pharaonic gate.mp4' }
     ];
-
-    let currentVideoSrc = '';
-
-    const setVideoSource = () => {
-        const newVideoSrc = videoSources.reduce((acc, video) => {
-            return window.innerWidth <= video.size ? video.src : acc;
-        }, videoSources[videoSources.length - 1].src);
-
-        if (newVideoSrc !== currentVideoSrc) {
-            introVideo.src = newVideoSrc;
-            introVideo.load();
-            currentVideoSrc = newVideoSrc;
+    const getSource = () => {
+        const width = window.innerWidth;
+        return sources.reduce((acc, v) => width <= v.size ? v.src : acc, sources[sources.length - 1].src);
+    };
+    const updateSource = () => {
+        const src = getSource();
+        if (src !== currentSrc) {
+            currentSrc = src;
+            video.src = src;
+            video.load();
         }
     };
-
-    const hideVideo = () => {
-        if (videoOverlay) {
-            introVideo.pause();
-            introVideo.currentTime = 0;
-            videoOverlay.classList.add('hidden');
-            document.body.style.overflow = 'auto';
-        }
-    };
-
-    const initVideo = () => {
-        setVideoSource();
-        introVideo.play().catch(hideVideo);
-    };
-
-    initVideo();
-    introVideo.addEventListener('ended', hideVideo);
-    skipButton.addEventListener('click', hideVideo);
-    window.addEventListener('resize', setVideoSource);
-});
-
-/*---------------------------- Header --------------------------------*/
-document.addEventListener("DOMContentLoaded", () => {
-    const header = document.querySelector(".main-header");
-    const menuToggle = document.getElementById('menu-toggle');
-    const mobileOverlay = document.getElementById('mobile-overlay');
-    const mobileLinks = document.querySelectorAll('.m-nav-link');
-
-    window.addEventListener("scroll", () => {
-        header?.classList.toggle("is-scrolled", window.scrollY > 5);
-    });
-
-    if (menuToggle && mobileOverlay) {
-        const toggleMenu = () => {
-            menuToggle.classList.toggle('active');
-            mobileOverlay.classList.toggle('active');
-            mobileLinks.forEach((link, i) => {
-                link.style.animation = mobileOverlay.classList.contains('active')
-                    ? `reveal .6s cubic-bezier(.4,0,.2,1) forwards ${i * 0.08}s`
-                    : '';
-            });
-        };
-
-        menuToggle.addEventListener('click', toggleMenu);
-
-        mobileLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileOverlay.classList.remove('active');
-                menuToggle.classList.remove('active');
-            });
-        });
-    }
-});
-
-/*------------------------------------------ Trips Section -------------------------------------------------*/
-
-document.addEventListener("DOMContentLoaded", () => {
-    const wrapper = document.querySelector(".trips-slider-wrapper");
-    const grid = document.querySelector(".trips-grid");
-    const cards = gsap.utils.toArray(".trip-card");
-    const dotsContainer = document.querySelector(".slider-dots");
-
-    if (wrapper && grid && cards.length > 0 && dotsContainer) {
-        let currentIndex = 0;
-        let autoPlayInterval;
-
-        dotsContainer.innerHTML = "";
-        cards.forEach((_, i) => {
-            const dot = document.createElement("div");
-            dot.classList.add("slider-dot");
-            if (i === 0) dot.classList.add("active");
-            dot.addEventListener("click", () => {
-                goToSlide(i);
-                restartAutoPlay();
-            });
-            dotsContainer.appendChild(dot);
-        });
-
-        const dots = document.querySelectorAll(".slider-dot");
-
-        const goToSlide = (index) => {
-            const visibleCards = window.innerWidth > 1100 ? 3 : (window.innerWidth > 768 ? 2 : 1);
-            const maxIndex = cards.length - visibleCards;
-
-            if (index > maxIndex) index = 0;
-            if (index < 0) index = maxIndex;
-
-            currentIndex = index;
-            const cardWidth = cards[0].offsetWidth;
-            const gap = parseInt(window.getComputedStyle(grid).gap) || 0;
-            const xOffset = -(currentIndex * (cardWidth + gap));
-
-            gsap.to(grid, {
-                x: xOffset,
-                duration: 1,
-                ease: "power3.out",
-                onComplete: () => {
-                    dots.forEach((d, i) => d.classList.toggle("active", i === currentIndex));
-                }
-            });
-        };
-
-        function startAutoPlay() {
-            stopAutoPlay();
-            autoPlayInterval = setInterval(() => {
-                goToSlide(currentIndex + 1);
-            }, 5000);
-        }
-
-        function stopAutoPlay() {
-            clearInterval(autoPlayInterval);
-        }
-
-        function restartAutoPlay() {
-            stopAutoPlay();
-            startAutoPlay();
-        }
-
-        wrapper.addEventListener("mouseenter", stopAutoPlay);
-        wrapper.addEventListener("mouseleave", startAutoPlay);
-        wrapper.addEventListener("touchstart", stopAutoPlay, { passive: true });
-        wrapper.addEventListener("touchend", startAutoPlay);
-
-        startAutoPlay();
-
-        window.addEventListener("resize", () => {
-            gsap.set(grid, { clearProps: "x" });
-            goToSlide(currentIndex);
-        });
-
-    }
-});
-
-/*------------------------------------ Section Feedback Styles ------------------------------------*/
-
-document.addEventListener("DOMContentLoaded", () => {
-    const track = document.querySelector('.swiper-wrapper');
-    const container = document.querySelector('.swiper-container-feedback');
-    const pagination = document.querySelector('.swiper-pagination');
-    const feedbackForm = document.querySelector('.modal-form');
-
-    let currentIndex = 0;
-    let autoPlayTimer;
-
-    function initSlider() {
-        if (!container) return;
-        const slides = document.querySelectorAll('.swiper-wrapper > .swiper-slide');
-        const slideWidth = container.offsetWidth;
-
-        gsap.set(track, { 
-            display: 'flex', 
-            width: `${slides.length * 100}%`, 
-            x: -(currentIndex * slideWidth) 
-        });
-        
-        gsap.set(slides, { 
-            width: slideWidth, 
-            flex: `0 0 ${slideWidth}px` 
-        });
-
-        if (pagination) {
-            pagination.innerHTML = '';
-            slides.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.classList.add('dot');
-                if (i === currentIndex) dot.classList.add('active');
-                dot.addEventListener('click', () => { 
-                    stopAutoPlay(); 
-                    goToSlide(i); 
-                    startAutoPlay(); 
-                });
-                pagination.appendChild(dot);
-            });
-        }
-    }
-
-    function goToSlide(index) {
-        const slides = document.querySelectorAll('.swiper-wrapper > .swiper-slide');
-        const slideWidth = container.offsetWidth;
-        
-        if (index < 0) index = slides.length - 1;
-        if (index >= slides.length) index = 0;
-        
-        currentIndex = index;
-
-        gsap.to(track, {
-            x: -(currentIndex * slideWidth),
-            duration: 1.2,
-            ease: "power2.out",
-            onUpdate: () => {
-                document.querySelectorAll('.dot').forEach((dot, i) => {
-                    dot.classList.toggle('active', i === currentIndex);
-                });
+    const hide = () => {
+        if (!overlay) return;
+        video.pause();
+        video.currentTime = 0;
+        gsap.to(overlay, {
+            opacity: 0,
+            duration: .9,
+            ease: "power4.out",
+            onComplete() {
+                overlay.classList.add("hidden");
+                document.body.style.overflow = "auto";
             }
         });
-    }
+    };
+    const init = () => {
+        overlay = document.getElementById("video-overlay");
+        video = document.getElementById("intro-video");
+        skip = document.getElementById("skip-button");
+        if (!video) return;
+        updateSource();
+        video.play().catch(hide);
+        video.addEventListener("ended", hide);
+        skip?.addEventListener("click", hide);
+        window.addEventListener("resize", RAFThrottle(updateSource), { passive: true });
+    };
+    return { init };
+})();
+const HeaderModule = (() => {
+    let header;
+    let toggle;
+    let overlay;
+    let links;
+    const onScroll = () => {
+        header?.classList.toggle("is-scrolled", window.scrollY > 5);
+    };
+    const toggleMenu = () => {
+        toggle.classList.toggle("active");
+        overlay.classList.toggle("active");
+        const active = overlay.classList.contains("active");
+        links.forEach((link, i) => {
+            link.style.animation = active
+                ? `reveal .6s cubic-bezier(.4,0,.2,1) forwards ${i * .08}s`
+                : '';
+        });
+    };
+    const init = () => {
+        header = document.querySelector(".main-header");
+        toggle = document.getElementById("menu-toggle");
+        overlay = document.getElementById("mobile-overlay");
+        links = document.querySelectorAll(".m-nav-link");
+        window.addEventListener("scroll", RAFThrottle(onScroll), { passive: true });
+        if (!toggle || !overlay) return;
+        toggle.addEventListener("click", toggleMenu);
+        links.forEach(link => {
+            link.addEventListener("click", () => {
+                overlay.classList.remove("active");
+                toggle.classList.remove("active");
+            });
+        });
+    };
+    return { init };
+})();
+const TripsSlider = (() => {
+    let wrapper;
+    let grid;
+    let cards;
+    let dotsContainer;
+    let dots = [];
+    let index = 0;
+    let startX = 0;
+    let currentX = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let dragging = false;
+    let autoplay;
+    const visibleCards = () => {
+        if (window.innerWidth > 1100) return 3;
+        if (window.innerWidth > 768) return 2;
+        return 1;
+    };
+    const metrics = () => {
+        const cardWidth = cards[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(grid).gap) || 0;
+        return {
+            cardWidth,
+            gap,
+            slide: cardWidth + gap
+        };
+    };
+    const clampIndex = (i) => {
+        const max = cards.length - visibleCards();
+        if (i < 0) return max;
+        if (i > max) return 0;
+        return i;
+    };
+    const moveTo = (i, inertia = 0) => {
+        index = clampIndex(i);
+        const { slide } = metrics();
+        const x = -(index * slide);
+        currentX = x;
+        gsap.to(grid, {
+            x,
+            duration: .9 + Math.abs(inertia) * .002,
+            ease: "expo.out",
+            force3D: true
+        });
+        dots.forEach((d, n) => d.classList.toggle("active", n === index));
+    };
+    const start = (x) => {
+        dragging = true;
+        startX = x;
+        lastX = x;
+        velocity = 0;
+        lastTime = performance.now();
+        stopAuto();
+    };
+    const move = (x) => {
+        if (!dragging) return;
+        const now = performance.now();
+        const delta = x - startX;
+        velocity = (x - lastX) / (now - lastTime);
+        lastX = x;
+        lastTime = now;
+        gsap.set(grid, {
+            x: currentX + delta,
+            force3D: true
+        });
+    };
+    const end = (x) => {
+        if (!dragging) return;
+        dragging = false;
+        const delta = x - startX;
+        const threshold = 60;
+        if (Math.abs(delta) > threshold || Math.abs(velocity) > .4) {
+            if (delta < 0) moveTo(index + 1, velocity);
+            else moveTo(index - 1, velocity);
+        } else {
+            moveTo(index);
+        }
+        startAuto();
+    };
+    const touchStart = e => start(e.touches[0].clientX);
+    const touchMove = e => move(e.touches[0].clientX);
+    const touchEnd = e => end(e.changedTouches[0].clientX);
+    const mouseDown = e => start(e.clientX);
+    const mouseMove = e => move(e.clientX);
+    const mouseUp = e => end(e.clientX);
+    const createDots = () => {
+        dotsContainer.innerHTML = '';
+        cards.forEach((_, i) => {
+            const d = document.createElement("div");
+            d.className = "slider-dot";
+            if (i === 0) d.classList.add("active");
+            d.addEventListener("click", () => {
+                moveTo(i);
+                restartAuto();
+            });
+            dotsContainer.appendChild(d);
+        });
+        dots = [...dotsContainer.children];
+    };
+    const startAuto = () => {
+        stopAuto();
+        autoplay = setInterval(() => {
+            moveTo(index + 1);
+        }, 5000);
+    };
+    const stopAuto = () => {
+        if (autoplay) clearInterval(autoplay);
+    };
+    const restartAuto = () => {
+        stopAuto();
+        startAuto();
+    };
+    const resize = () => {
+        gsap.set(grid, { clearProps: "x" });
+        moveTo(index);
+    };
+    const init = () => {
+        wrapper = document.querySelector(".trips-slider-wrapper");
+        grid = document.querySelector(".trips-grid");
+        cards = gsap.utils.toArray(".trip-card");
+        dotsContainer = document.querySelector(".slider-dots");
+        if (!wrapper || !grid || !cards.length || !dotsContainer) return;
+        gsap.set(grid, { force3D: true });
+        grid.style.willChange = "transform";
+        createDots();
+        wrapper.addEventListener("mouseenter", stopAuto);
+        wrapper.addEventListener("mouseleave", startAuto);
+        wrapper.addEventListener("touchstart", touchStart, { passive: true });
+        wrapper.addEventListener("touchmove", touchMove, { passive: true });
+        wrapper.addEventListener("touchend", touchEnd, { passive: true });
+        wrapper.addEventListener("mousedown", mouseDown);
+        window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("mouseup", mouseUp);
+        window.addEventListener("resize", RAFThrottle(resize), { passive: true });
+        startAuto();
+    };
+    return { init };
+})();
+document.addEventListener("DOMContentLoaded", () => {
+    PharaonicDoor.init();
+    HeaderModule.init();
+    TripsSlider.init();
+});
 
-    if (feedbackForm) {
-        feedbackForm.addEventListener('submit', (e) => {
+const FeedbackSlider = (() => {
+    let container;
+    let track;
+    let slides;
+    let pagination;
+    let slideWidth = 0;
+    let index = 0;
+    let autoplay;
+    let startX = 0;
+    let currentX = 0;
+    let velocity = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let dragging = false;
+    const metrics = () => {
+        slideWidth = container.offsetWidth;
+    };
+    const layout = () => {
+        slides = gsap.utils.toArray('.swiper-wrapper > .swiper-slide');
+        gsap.set(track, {
+            display: "flex",
+            width: `${slides.length * 100}%`,
+            force3D: true
+        });
+        gsap.set(slides, {
+            width: slideWidth,
+            flex: `0 0 ${slideWidth}px`
+        });
+        gsap.set(track, {
+            x: -(index * slideWidth)
+        });
+    };
+    const updateDots = () => {
+        document.querySelectorAll('.dot').forEach((d, i) => {
+            d.classList.toggle("active", i === index);
+        });
+    };
+    const goTo = (i, inertia = 0) => {
+        if (i < 0) i = slides.length - 1;
+        if (i >= slides.length) i = 0;
+        index = i;
+        currentX = -(index * slideWidth);
+        gsap.to(track, {
+            x: currentX,
+            duration: .9 + Math.abs(inertia) * .002,
+            ease: "expo.out",
+            force3D: true,
+            onUpdate: updateDots
+        });
+    };
+    const start = (x) => {
+        dragging = true;
+        startX = x;
+        lastX = x;
+        velocity = 0;
+        lastTime = performance.now();
+        stopAuto();
+    };
+    const move = (x) => {
+        if (!dragging) return;
+        const now = performance.now();
+        const delta = x - startX;
+        velocity = (x - lastX) / (now - lastTime);
+        lastX = x;
+        lastTime = now;
+        gsap.set(track, {
+            x: currentX + delta,
+            force3D: true
+        });
+    };
+    const end = (x) => {
+        if (!dragging) return;
+        dragging = false;
+        const delta = x - startX;
+        const threshold = 60;
+        if (Math.abs(delta) > threshold || Math.abs(velocity) > .4) {
+            if (delta < 0) goTo(index + 1, velocity);
+            else goTo(index - 1, velocity);
+        } else {
+            goTo(index);
+        }
+        startAuto();
+    };
+    const touchStart = e => start(e.touches[0].clientX);
+    const touchMove = e => move(e.touches[0].clientX);
+    const touchEnd = e => end(e.changedTouches[0].clientX);
+    const mouseDown = e => start(e.clientX);
+    const mouseMove = e => move(e.clientX);
+    const mouseUp = e => end(e.clientX);
+    const createDots = () => {
+        if (!pagination) return;
+        pagination.innerHTML = '';
+        slides.forEach((_, i) => {
+            const dot = document.createElement('div');
+            dot.className = "dot";
+            if (i === index) dot.classList.add("active");
+            dot.addEventListener("click", () => {
+                stopAuto();
+                goTo(i);
+                startAuto();
+            });
+            pagination.appendChild(dot);
+        });
+    };
+    const startAuto = () => {
+        stopAuto();
+        autoplay = setInterval(() => {
+            goTo(index + 1);
+        }, 5000);
+    };
+    const stopAuto = () => {
+        if (autoplay) clearInterval(autoplay);
+    };
+    const resize = () => {
+        metrics();
+        layout();
+        goTo(index);
+    };
+    const interactions = () => {
+        container.addEventListener("mouseenter", stopAuto);
+        container.addEventListener("mouseleave", startAuto);
+        container.addEventListener("touchstart", touchStart, { passive: true });
+        container.addEventListener("touchmove", touchMove, { passive: true });
+        container.addEventListener("touchend", touchEnd, { passive: true });
+        container.addEventListener("mousedown", mouseDown);
+        window.addEventListener("mousemove", mouseMove);
+        window.addEventListener("mouseup", mouseUp);
+    };
+    const init = () => {
+        container = document.querySelector('.swiper-container-feedback');
+        track = document.querySelector('.swiper-wrapper');
+        pagination = document.querySelector('.swiper-pagination');
+        if (!container || !track) return;
+        metrics();
+        layout();
+        createDots();
+        interactions();
+        startAuto();
+        window.addEventListener("resize", RAFThrottle(resize), { passive: true });
+        gsap.utils.toArray('.swiper-slide').forEach(slide => {
+            gsap.from(slide, {
+                scrollTrigger: {
+                    trigger: slide,
+                    start: "top 90%"
+                },
+                y: 30,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+    };
+    return { init };
+})();
+const FeedbackModals = (() => {
+    const openModal = () => {
+        const modal = document.getElementById("reviewModal");
+        gsap.set(modal, { display: "flex" });
+        gsap.fromTo(
+            "#reviewModal .modal-content",
+            { scale: .9, opacity: 0, y: 30 },
+            { scale: 1, opacity: 1, y: 0, duration: .6, ease: "expo.out" }
+        );
+    };
+    const closeModal = () => {
+        const modal = document.getElementById("reviewModal");
+        gsap.to("#reviewModal .modal-content", {
+            scale: .9,
+            opacity: 0,
+            duration: .35,
+            ease: "power2.in"
+        });
+        gsap.to(modal, {
+            opacity: 0,
+            duration: .4,
+            onComplete() {
+                modal.style.display = "none";
+                gsap.set(modal, { opacity: 1 });
+            }
+        });
+    };
+    const openThanks = () => {
+        const modal = document.getElementById("thanksModal");
+        gsap.set(modal, { display: "flex" });
+        gsap.fromTo(
+            "#thanksModal .modal-content",
+            { scale: .85, opacity: 0 },
+            { scale: 1, opacity: 1, duration: .6, ease: "expo.out" }
+        );
+    };
+    const closeThanks = () => {
+        const modal = document.getElementById("thanksModal");
+        gsap.to(modal, {
+            opacity: 0,
+            duration: .35,
+            onComplete() {
+                modal.style.display = "none";
+                gsap.set(modal, { opacity: 1 });
+            }
+        });
+    };
+    return { openModal, closeModal, openThanks, closeThanks };
+})();
+const FeedbackForm = (() => {
+    const init = () => {
+        const form = document.querySelector('.modal-form');
+        if (!form) return;
+        form.addEventListener("submit", e => {
             e.preventDefault();
             const name = document.getElementById('reviewerName').value;
             const rating = document.getElementById('reviewerRating').value;
             const text = document.getElementById('reviewerText').value;
-            const myNumber = "201151532637";
-
-            const whatsappMsg = `*New Royal Review Received*%0A%0A*Name:* ${name}%0A*Rating:* ${rating}/5 STARS%0A*Review:* ${text}`;
-
-            closeModal();
-            openThanks();
-
+            const number = "201151532637";
+            const msg =
+                `*New Royal Review Received*%0A%0A*Name:* ${name}%0A*Rating:* ${rating}/5 STARS%0A*Review:* ${text}`;
+            FeedbackModals.closeModal();
+            FeedbackModals.openThanks();
             setTimeout(() => {
-                window.open(`https://wa.me/${myNumber}?text=${whatsappMsg}`, '_blank');
-                feedbackForm.reset();
+                window.open(`https://wa.me/${number}?text=${msg}`, "_blank");
+                form.reset();
             }, 2000);
         });
-    }
-
-    function startAutoPlay() { 
-        stopAutoPlay(); 
-        autoPlayTimer = setInterval(() => goToSlide(currentIndex + 1), 5000); 
-    }
-
-    function stopAutoPlay() { 
-        clearInterval(autoPlayTimer); 
-    }
-
-    window.openModal = () => {
-        gsap.set("#reviewModal", { display: "flex" });
-        gsap.fromTo("#reviewModal .modal-content", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power2.out" });
     };
-
-    window.closeModal = () => {
-        gsap.to("#reviewModal", { opacity: 0, duration: 0.4, onComplete: () => { 
-            document.getElementById("reviewModal").style.display = "none"; 
-            gsap.set("#reviewModal", { opacity: 1 }); 
-        }});
-    };
-
-    window.openThanks = () => {
-        gsap.set("#thanksModal", { display: "flex" });
-        gsap.fromTo("#thanksModal .modal-content", { scale: 0.9, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "power2.out" });
-    };
-
-    window.closeThanks = () => {
-        gsap.to("#thanksModal", { opacity: 0, duration: 0.4, onComplete: () => { 
-            document.getElementById("thanksModal").style.display = "none"; 
-            gsap.set("#thanksModal", { opacity: 1 }); 
-        }});
-    };
-
-    gsap.utils.toArray('.swiper-slide').forEach(slide => {
-        gsap.from(slide, {
-            scrollTrigger: { trigger: slide, start: "top 90%" },
-            y: 30,
-            opacity: 0,
-            duration: 1,
-            ease: "power2.out"
-        });
-    });
-
-    window.addEventListener('resize', initSlider);
-    initSlider();
-    startAutoPlay();
+    return { init };
+})();
+document.addEventListener("DOMContentLoaded", () => {
+    FeedbackSlider.init();
+    FeedbackForm.init();
+    window.openModal = FeedbackModals.openModal;
+    window.closeModal = FeedbackModals.closeModal;
+    window.openThanks = FeedbackModals.openThanks;
+    window.closeThanks = FeedbackModals.closeThanks;
 });
 
-/*---------------------- Section Gallery Styles ---------------------------*/
-
-document.addEventListener("DOMContentLoaded", () => {
+const GalleryModule = (() => {
     const grid = document.getElementById('galleryGrid');
     const mask = document.querySelector('.gallery-mask');
     const items = gsap.utils.toArray('.gallery-item');
@@ -301,91 +484,210 @@ document.addEventListener("DOMContentLoaded", () => {
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const initialVisible = 10;
-
     let currentIndex = 0;
     let isExpanded = false;
     let autoPlayTick;
-
-    const initGallery = () => {
-        stopAutoPlay();
-        if (!grid || items.length === 0) return;
-
-        if (window.innerWidth > 1024) {
-            btn.style.display = items.length > initialVisible ? 'block' : 'none';
-            updateGridVisibility();
-            gsap.set(grid, { clearProps: "all" });
-        } else {
-            btn.style.display = 'none';
-            items.forEach(item => item.classList.remove('hidden-item'));
-            setupMobileSlider();
-            startAutoPlay();
-        }
+    const RAFThrottle = (fn) => {
+        let raf;
+        return (...args) => {
+            if (raf) return;
+            raf = requestAnimationFrame(() => {
+                fn(...args);
+                raf = null;
+            });
+        };
     };
-
     const updateGridVisibility = () => {
-        items.forEach((item, index) => item.classList.toggle('hidden-item', index >= initialVisible && !isExpanded));
+        items.forEach((item, index) => {
+            item.classList.toggle(
+                'hidden-item',
+                index >= initialVisible && !isExpanded
+            );
+        });
     };
-
+    const setupDesktop = () => {
+        stopAutoPlay();
+        btn.style.display =
+            items.length > initialVisible ? 'block' : 'none';
+        updateGridVisibility();
+        gsap.set(grid, { clearProps: "all" });
+    };
     btn?.addEventListener('click', () => {
         isExpanded = !isExpanded;
         if (isExpanded) {
-            items.forEach(item => item.classList.remove('hidden-item'));
-            btn.textContent = 'SHOW LESS';
+            items.forEach(item =>
+                item.classList.remove('hidden-item')
+            );
+            btn.textContent = "SHOW LESS";
         } else {
             updateGridVisibility();
-            btn.textContent = 'SHOW MORE';
-            document.getElementById('gallery')?.scrollIntoView({ behavior: 'smooth' });
+            btn.textContent = "SHOW MORE";
+            document
+                .getElementById('gallery')
+                ?.scrollIntoView({ behavior: 'smooth' });
         }
     });
-
-    const setupMobileSlider = () => {
-        const gap = 15;
-        const step = items[0].offsetWidth + gap;
-
+    let step = 0;
+    let maxIndex = 0;
+    let startX = 0;
+    let currentX = 0;
+    let lastX = 0;
+    let velocity = 0;
+    let lastTime = 0;
+    let dragging = false;
+    const updateDots = () => {
+        const dots = gsap.utils.toArray('.gallery-dot');
+        dots.forEach((dot, i) =>
+            dot.classList.toggle('active', i === currentIndex)
+        );
+    };
+    const goToSlide = (index, momentum = false) => {
+        if (index < 0) index = 0;
+        if (index > maxIndex) index = maxIndex;
+        currentIndex = index;
+        gsap.to(grid, {
+            x: -currentIndex * step,
+            duration: momentum ? 0.9 : 0.7,
+            ease: "power3.out",
+            onUpdate: updateDots
+        });
+    };
+    const buildDots = () => {
         dotsContainer.innerHTML = '';
         items.forEach((_, i) => {
             const dot = document.createElement('div');
             dot.classList.add('gallery-dot');
             if (i === 0) dot.classList.add('active');
-            dot.addEventListener('click', () => { stopAutoPlay(); goToSlide(i); startAutoPlay(); });
+            dot.addEventListener('click', () => {
+                stopAutoPlay();
+                goToSlide(i);
+                startAutoPlay();
+            });
             dotsContainer.appendChild(dot);
         });
     };
-
-    const goToSlide = (index) => {
+    const setupMobileSlider = () => {
+        btn.style.display = 'none';
+        items.forEach(item =>
+            item.classList.remove('hidden-item')
+        );
         const gap = 15;
-        const step = items[0].offsetWidth + gap;
-        const maxIndex = items.length - 1;
-        currentIndex = index > maxIndex ? 0 : index;
-        gsap.to(grid, { x: -currentIndex * step, duration: 0.7, ease: "power2.inOut", onUpdate: updateDots });
+        step = items[0].offsetWidth + gap;
+        maxIndex = items.length - 1;
+        buildDots();
+        attachTouch();
     };
-
-    const updateDots = () => {
-        const dots = gsap.utils.toArray('.gallery-dot');
-        dots.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+    const attachTouch = () => {
+        if (!mask) return;
+        mask.addEventListener('pointerdown', onStart);
+        window.addEventListener('pointermove', onMove);
+        window.addEventListener('pointerup', onEnd);
+        window.addEventListener('pointercancel', onEnd);
     };
-
-    const startAutoPlay = () => { stopAutoPlay(); autoPlayTick = setInterval(() => goToSlide(currentIndex + 1), 3000); };
-    const stopAutoPlay = () => clearInterval(autoPlayTick);
-
-    items.forEach(item => {
-        const img = item.querySelector('img');
-        img?.addEventListener('click', () => {
-            lightboxImg.src = img.src;
-            lightbox.style.display = 'flex';
-            gsap.fromTo(lightbox, { opacity: 0 }, { opacity: 1, duration: 0.4 });
+    const onStart = (e) => {
+        stopAutoPlay();
+        dragging = true;
+        startX = e.clientX;
+        lastX = startX;
+        velocity = 0;
+        lastTime = performance.now();
+        gsap.killTweensOf(grid);
+    };
+    const onMove = (e) => {
+        if (!dragging) return;
+        currentX = e.clientX;
+        const delta = currentX - startX;
+        const now = performance.now();
+        const dt = now - lastTime;
+        velocity = (currentX - lastX) / dt;
+        lastX = currentX;
+        lastTime = now;
+        let position = -currentIndex * step + delta;
+        const max = 0;
+        const min = -maxIndex * step;
+        if (position > max)
+            position *= 0.35;
+        if (position < min)
+            position = min + (position - min) * 0.35;
+        gsap.set(grid, { x: position });
+    };
+    const onEnd = () => {
+        if (!dragging) return;
+        dragging = false;
+        const momentum = velocity * 220;
+        const currentPos = gsap.getProperty(grid, "x");
+        const projected = currentPos + momentum;
+        const index = Math.round(-projected / step);
+        goToSlide(index, true);
+        startAutoPlay();
+    };
+    const startAutoPlay = () => {
+        stopAutoPlay();
+        autoPlayTick = setInterval(() => {
+            let next = currentIndex + 1;
+            if (next > maxIndex)
+                next = 0;
+            goToSlide(next);
+        }, 3200);
+    };
+    const stopAutoPlay = () => {
+        clearInterval(autoPlayTick);
+    };
+    const initLightbox = () => {
+        items.forEach(item => {
+            const img = item.querySelector('img');
+            img?.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightbox.style.display = 'flex';
+                gsap.fromTo(
+                    lightbox,
+                    { opacity: 0, scale: 0.96 },
+                    {
+                        opacity: 1,
+                        scale: 1,
+                        duration: 0.55,
+                        ease: "expo.out"
+                    }
+                );
+            });
         });
-    });
-
-    window.closeLightbox = () => {
-        gsap.to(lightbox, { opacity: 0, duration: 0.3, onComplete: () => lightbox.style.display = 'none' });
+        window.closeLightbox = () => {
+            gsap.to(lightbox, {
+                opacity: 0,
+                scale: 0.96,
+                duration: 0.45,
+                ease: "expo.inOut",
+                onComplete: () =>
+                    lightbox.style.display = 'none'
+            });
+        };
     };
+    const initGallery = () => {
+        if (!grid || items.length === 0) return;
+        if (window.innerWidth > 1024)
+            setupDesktop();
+        else {
+            setupMobileSlider();
+            startAutoPlay();
+        }
+    };
+    const init = () => {
+        initGallery();
+        initLightbox();
+        window.addEventListener(
+            'resize',
+            RAFThrottle(initGallery)
+        );
+    };
+    return { init };
+})();
+document.addEventListener(
+    "DOMContentLoaded",
+    GalleryModule.init
+);
 
-    window.addEventListener('resize', initGallery);
-    initGallery();
-});
 
-/*--------------------------------------------------- FAQ SECTION ------------------------------------------------*/
+
 document.querySelectorAll('.faq-toggle').forEach(btn => {
     btn.addEventListener('click', () => toggleFaq(btn));
 });
@@ -394,38 +696,114 @@ function toggleFaq(element) {
     document.querySelectorAll('.faq-item').forEach(item => { if (item !== parent) item.classList.remove('active'); });
     parent.classList.toggle('active');
 }
-
-/*---------------------------------------- QUICK CONTACT SECTION ----------------------------------------------*/
-document.addEventListener("DOMContentLoaded", () => {
-    const contactForm = document.querySelector('.ancient-form-content');
-    if (contactForm) {
-        contactForm.addEventListener('submit', e => {
+const ContactModule = (() => {
+    let form;
+    const initForm = () => {
+        form = document.querySelector('.ancient-form-content');
+        if (!form) return;
+        form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const name = contactForm.querySelector('input[name="name"]')?.value.trim() ||
-            contactForm.querySelector('input[type="text"]').value.trim();
-            const email = contactForm.querySelector('input[type="email"]')?.value.trim();
-            const message = contactForm.querySelector('textarea')?.value.trim();
+            const name =
+                form.querySelector('input[name="name"]')?.value.trim() ||
+                form.querySelector('input[type="text"]')?.value.trim() ||
+                '';
+            const email =
+                form.querySelector('input[type="email"]')?.value.trim() || '';
+            const message =
+                form.querySelector('textarea')?.value.trim() || '';
             const waNumber = '201151532637';
             const emailPart = email ? `%0AEmail: ${email}` : '';
             const text = `Name: ${name}${emailPart}%0AMessage: ${message}`;
-            window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
-            contactForm.reset();
+            window.open(
+                `https://wa.me/${waNumber}?text=${text}`,
+                '_blank'
+            );
+            form.reset();
         });
-    }
-
-    const scrollBtn = document.getElementById('scrollTopBtn');
-    const toggleScrollBtn = () => scrollBtn?.classList.toggle('show', window.scrollY > 600);
-    scrollBtn?.addEventListener('click', e => { e.preventDefault(); gsap.to(window, { scrollTo: 0, duration: 1.2, ease: 'power2.inOut' }); });
-    window.addEventListener('scroll', toggleScrollBtn);
-    window.addEventListener('load', toggleScrollBtn);
-
-    gsap.fromTo('.luxury-contact-card', { y: 0 }, { y: 10, repeat: -1, yoyo: true, ease: 'sine.inOut', duration: 3 });
-    gsap.fromTo('.integrated-footer', { y: 0 }, { y: 5, repeat: -1, yoyo: true, ease: 'sine.inOut', duration: 4 });
+    };
+    const initFloatingAnimations = () => {
+        if (typeof gsap === "undefined") return;
+        gsap.fromTo(
+            '.luxury-contact-card',
+            { y: 0 },
+            {
+                y: 10,
+                duration: 3,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            }
+        );
+        gsap.fromTo(
+            '.integrated-footer',
+            { y: 0 },
+            {
+                y: 5,
+                duration: 4,
+                ease: "sine.inOut",
+                repeat: -1,
+                yoyo: true
+            }
+        );
+    };
+    const init = () => {
+        initForm();
+        initFloatingAnimations();
+    };
+    return { init };
+})();
+const UIModule = (() => {
+    let scrollBtnA;
+    let scrollBtnB;
+    const scrollToTop = () => {
+        if (typeof gsap !== "undefined" && gsap.plugins?.ScrollToPlugin) {
+            gsap.to(window, {
+                scrollTo: 0,
+                duration: 1.2,
+                ease: "power2.inOut"
+            });
+        } else {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        }
+    };
+    const updateButtons = () => {
+        const y = window.scrollY;
+        if (scrollBtnA) {
+            scrollBtnA.classList.toggle('show', y > 600);
+        }
+        if (scrollBtnB) {
+            scrollBtnB.classList.toggle('is-visible', y > 400);
+        }
+    };
+    const initScrollEvents = () => {
+        const throttledScroll = RAFThrottle(updateButtons);
+        window.addEventListener('scroll', throttledScroll);
+        window.addEventListener('load', updateButtons);
+    };
+    const bindButtons = () => {
+        if (scrollBtnA) {
+            scrollBtnA.addEventListener('click', e => {
+                e.preventDefault();
+                scrollToTop();
+            });
+        }
+        if (scrollBtnB) {
+            scrollBtnB.addEventListener('click', scrollToTop);
+        }
+    };
+    const init = () => {
+        scrollBtnA = document.getElementById('scrollTopBtn');
+        scrollBtnB = document.getElementById('scrollToTop');
+        bindButtons();
+        initScrollEvents();
+    };
+    return { init };
+})();
+document.addEventListener("DOMContentLoaded", () => {
+    FAQModule.init();
+    ContactModule.init();
+    UIModule.init();
 });
-
-/*------------------ Section UI Components & Scroll Button ------------------*/
-const backToTopBtn = document.getElementById("scrollToTop");
-const toggleScrollButton = () => backToTopBtn?.classList.toggle("is-visible", window.scrollY > 400);
-window.addEventListener("scroll", toggleScrollButton);
-backToTopBtn?.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
-
