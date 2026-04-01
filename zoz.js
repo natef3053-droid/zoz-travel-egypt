@@ -17,10 +17,10 @@ const PharaonicDoor = (() => {
     let skip;
     let currentSrc = '';
     const sources = [
-        { size: 1700, src: 'Wide Pharaonic gate.mp4' },
-        { size: 900, src: 'Wide Pharaonic gate.mp4' },
-        { size: 700, src: 'Long pharaonic gate.mp4' },
-        { size: 400, src: 'Long pharaonic gate.mp4' }
+        { size: 1700, src: '/Wide Pharaonic gate.mp4' },
+        { size: 900, src: '/Wide Pharaonic gate.mp4' },
+        { size: 700, src: '/Long pharaonic gate.mp4' },
+        { size: 400, src: '/Long pharaonic gate.mp4' }
     ];
     const getSource = () => {
         const width = window.innerWidth;
@@ -687,7 +687,6 @@ document.addEventListener(
 );
 
 
-
 document.querySelectorAll('.faq-toggle').forEach(btn => {
     btn.addEventListener('click', () => toggleFaq(btn));
 });
@@ -730,7 +729,6 @@ const UIModule = (() => {
         if (!scrollBtn) return;
 
         window.addEventListener('scroll', () => {
-            // يظهر الزرار بعد سكرول 400 بيكسل
             if (window.scrollY > 400) {
                 scrollBtn.classList.add('is-visible');
             } else {
