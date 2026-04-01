@@ -436,7 +436,7 @@ section {
     }
 }
 
-@media screen and (min-width: 1025px) {
+@media screen and (min-width: 901px) {
     .menu-toggle, 
     .hamburger-icon, 
     .mobile-nav-trigger { 
