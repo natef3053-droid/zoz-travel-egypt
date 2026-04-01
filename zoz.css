@@ -1926,7 +1926,7 @@ section::after {
   .royal-gallery,
   .royal-faq,
   .royal-feedback-section { background-image: url('sections-bg-sm\ .webp'); }
-  .unified-contact-section { background-image: url('/contact-bg-sm-_2.webp'); }
+  .unified-contact-section { background-image: url('contact-bg-sm-_2.webp'); }
 
   section::before { background: linear-gradient(to bottom, #eca05c 0%, rgba(172, 117, 74, 0) 100%); inset-block-start: 0; }
   section::after { background: linear-gradient(to top, #eca05c 0%, rgba(172, 117, 74, 0) 100%); inset-block-end: 0; }
