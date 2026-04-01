@@ -436,6 +436,27 @@ section {
     }
 }
 
+@media screen and (min-width: 1025px) {
+    .menu-toggle, 
+    .hamburger-icon, 
+    .mobile-nav-trigger { 
+        display: none !important; 
+    }
+    .mobile-overlay, 
+    .nav-menu-mobile, 
+    .mobile-menu-container { 
+        display: none !important; 
+        visibility: hidden !important; 
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    .header-nav, 
+    .desktop-links, 
+    .main-navigation { 
+        display: flex !important; 
+    }
+}
+
 
 /*---------------------------- Shared Button Components ------------------------------------*/
 
