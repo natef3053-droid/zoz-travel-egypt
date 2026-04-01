@@ -696,114 +696,57 @@ function toggleFaq(element) {
     document.querySelectorAll('.faq-item').forEach(item => { if (item !== parent) item.classList.remove('active'); });
     parent.classList.toggle('active');
 }
+
 const ContactModule = (() => {
-    let form;
     const initForm = () => {
-        form = document.querySelector('.ancient-form-content');
+        const form = document.querySelector('.ancient-form-content');
         if (!form) return;
+
         form.addEventListener('submit', (e) => {
             e.preventDefault();
-            const name =
-                form.querySelector('input[name="name"]')?.value.trim() ||
-                form.querySelector('input[type="text"]')?.value.trim() ||
-                '';
-            const email =
-                form.querySelector('input[type="email"]')?.value.trim() || '';
-            const message =
-                form.querySelector('textarea')?.value.trim() || '';
+            const name = form.querySelector('[name="name"]')?.value.trim() || "عميل";
+            const email = form.querySelector('[type="email"]')?.value.trim() || "";
+            const message = form.querySelector('textarea')?.value.trim() || "";
             const waNumber = '201151532637';
-            const emailPart = email ? `%0AEmail: ${email}` : '';
-            const text = `Name: ${name}${emailPart}%0AMessage: ${message}`;
-            window.open(
-                `https://wa.me/${waNumber}?text=${text}`,
-                '_blank'
-            );
+            
+            const text = `Name: ${name}%0AEmail: ${email}%0AMessage: ${message}`;
+            window.open(`https://wa.me/${waNumber}?text=${text}`, '_blank');
             form.reset();
         });
     };
-    const initFloatingAnimations = () => {
-        if (typeof gsap === "undefined") return;
-        gsap.fromTo(
-            '.luxury-contact-card',
-            { y: 0 },
-            {
-                y: 10,
-                duration: 3,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            }
-        );
-        gsap.fromTo(
-            '.integrated-footer',
-            { y: 0 },
-            {
-                y: 5,
-                duration: 4,
-                ease: "sine.inOut",
-                repeat: -1,
-                yoyo: true
-            }
-        );
+
+    const initAnimations = () => {
+        if (typeof gsap !== "undefined") {
+            gsap.fromTo('.luxury-contact-card', { y: 0 }, { y: 10, duration: 3, ease: "sine.inOut", repeat: -1, yoyo: true });
+        }
     };
-    const init = () => {
-        initForm();
-        initFloatingAnimations();
-    };
-    return { init };
+
+    return { init: () => { initForm(); initAnimations(); } };
 })();
+
 const UIModule = (() => {
-    let scrollBtnA;
-    let scrollBtnB;
-    const scrollToTop = () => {
-        if (typeof gsap !== "undefined" && gsap.plugins?.ScrollToPlugin) {
-            gsap.to(window, {
-                scrollTo: 0,
-                duration: 1.2,
-                ease: "power2.inOut"
-            });
-        } else {
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
-        }
+    const initScrollBtn = () => {
+        const scrollBtn = document.getElementById('scrollToTop');
+        if (!scrollBtn) return;
+
+        window.addEventListener('scroll', () => {
+            // يظهر الزرار بعد سكرول 400 بيكسل
+            if (window.scrollY > 400) {
+                scrollBtn.classList.add('is-visible');
+            } else {
+                scrollBtn.classList.remove('is-visible');
+            }
+        });
+
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
     };
-    const updateButtons = () => {
-        const y = window.scrollY;
-        if (scrollBtnA) {
-            scrollBtnA.classList.toggle('show', y > 600);
-        }
-        if (scrollBtnB) {
-            scrollBtnB.classList.toggle('is-visible', y > 400);
-        }
-    };
-    const initScrollEvents = () => {
-        const throttledScroll = RAFThrottle(updateButtons);
-        window.addEventListener('scroll', throttledScroll);
-        window.addEventListener('load', updateButtons);
-    };
-    const bindButtons = () => {
-        if (scrollBtnA) {
-            scrollBtnA.addEventListener('click', e => {
-                e.preventDefault();
-                scrollToTop();
-            });
-        }
-        if (scrollBtnB) {
-            scrollBtnB.addEventListener('click', scrollToTop);
-        }
-    };
-    const init = () => {
-        scrollBtnA = document.getElementById('scrollTopBtn');
-        scrollBtnB = document.getElementById('scrollToTop');
-        bindButtons();
-        initScrollEvents();
-    };
-    return { init };
+
+    return { init: () => { initScrollBtn(); } };
 })();
+
 document.addEventListener("DOMContentLoaded", () => {
-    FAQModule.init();
     ContactModule.init();
     UIModule.init();
 });
